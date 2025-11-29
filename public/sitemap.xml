@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+>
+
+  <url>
+    <loc>https://mateorumac.com/en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mateorumac.com/en"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://mateorumac.com/hr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mateorumac.com/en"/>
+    <priority>1.0</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://mateorumac.com/hr</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mateorumac.com/en"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://mateorumac.com/hr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mateorumac.com/en"/>
+    <priority>1.0</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://mateorumac.com/en/resume</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mateorumac.com/en/resume"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://mateorumac.com/hr/resume"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mateorumac.com/en/resume"/>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://mateorumac.com/hr/resume</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mateorumac.com/en/resume"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://mateorumac.com/hr/resume"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mateorumac.com/en/resume"/>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+</urlset>

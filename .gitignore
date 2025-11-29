@@ -1,0 +1,82 @@
+# ============================================
+#   NODE / JS PROJECT DEFAULTS
+# ============================================
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+build/
+
+# Local environment files
+.env
+.env.*.local
+
+# ============================================
+#   LOGS
+# ============================================
+
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ============================================
+#   EDITOR CONFIG
+# ============================================
+
+# VSCode
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# IDEs
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# ============================================
+#   SYSTEM FILES
+# ============================================
+
+.DS_Store
+Thumbs.db
+
+# ============================================
+#   OPTIONAL PROJECT-SPECIFIC IGNORE
+# ============================================
+
+# Local static dump, backups
+*.local
+*.cache
+.cache/
+*.tmp
+temp/
+
+# Vite cache
+.vite/
+
+# Browser / tooling cache
+.cache/
+.parcel-cache/
+
+# ============================================
+#   GIT SAFEKEEPING
+# ============================================
+
+# Prevent private keys or secrets from leaking
+*.pem
+*.key
+*.crt
+
+# Prevent accidentally committing large archives
+*.zip
+*.tar.gz
+*.7z

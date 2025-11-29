@@ -1,0 +1,299 @@
+.resume {
+  position: relative;
+  min-height: 100dvh;
+  background: var(--bg);
+  padding: clamp(5rem, 7vw, 6rem) clamp(1rem, 3vw, 1.5rem)
+    clamp(1.5rem, 4vw, 2rem);
+  display: grid;
+  align-items: start;
+  isolation: isolate;
+  margin-top: 2rem;
+  overflow-x: clip;
+}
+
+.resume__container {
+  width: min(900px, 92%);
+  margin-inline: auto;
+}
+
+.resume__controls {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.resume__spacer {
+  inline-size: 100%;
+}
+
+.resume__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--panel) 92%, black 8%);
+  color: var(--text);
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+  border-radius: 0;
+}
+
+.resume__btn:hover {
+  background: color-mix(in oklab, var(--panel) 86%, black 14%);
+}
+
+.resume__btn svg {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.resume__btn.primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.78rem 1.1rem;
+  font-weight: 700;
+  font-size: 0.98rem;
+  line-height: 1;
+  border: 1px solid transparent;
+  border-radius: 0;
+  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.18);
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  background: var(--brand);
+  color: #0c1320;
+  transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+.resume__btn.primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-105%);
+  background: linear-gradient(90deg, var(--accent-2), var(--accent));
+  transition: transform 0.35s cubic-bezier(0.22, 0.8, 0.33, 1);
+  z-index: -1;
+}
+.resume__btn.primary:hover::before {
+  transform: translateX(0);
+}
+.resume__btn.primary:hover {
+  border-color: transparent;
+}
+.resume__btn.primary svg {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex-shrink: 0;
+}
+
+.resume__btn.ghost {
+  background: transparent;
+  border-color: var(--border);
+}
+
+.resume__viewer {
+  margin-top: clamp(1rem, 3.5vw, 1.6rem);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.resume__frame {
+  width: 100%;
+  height: 100vh;
+  border: none;
+}
+
+.resume__fallback {
+  margin: 0.6rem 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.resume__fallback a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.resume__btn.ghost:hover {
+  background: color-mix(in oklab, var(--panel) 85%, white 15%);
+  color: var(--text);
+}
+
+:root[data-theme="light"] .resume__btn:hover {
+  background: color-mix(in oklab, var(--panel-2, var(--panel)) 88%, black 12%);
+}
+:root[data-theme="light"] .resume__viewer {
+  border-color: var(--border);
+}
+:root[data-theme="light"] .resume__frame {
+  background: #fff;
+}
+
+/* Footer (full-bleed, outside container) */
+.resume__miniFooter {
+  margin-top: 3rem;
+  padding: 3rem 0 1.25rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  background: color-mix(in oklab, var(--bg) 92%, var(--panel) 8%);
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding-inline: clamp(1rem, 3vw, 1.5rem);
+  box-sizing: border-box;
+}
+.resume__miniFooter > :not(.resume__miniFooter-divider) {
+  width: min(900px, 92%);
+  margin-inline: auto;
+}
+.resume__miniFooter-divider {
+  height: 1px;
+  width: 100%;
+  background: var(--border);
+}
+.resume__miniFooter-title {
+  text-align: center;
+  font-size: clamp(1.25rem, 2.2vw, 1.8rem);
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+.resume__miniFooter-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+.resume__btnFlat {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  color: var(--text);
+  text-decoration: none;
+  overflow: hidden;
+  z-index: 0;
+  transition: color 0.25s ease, border-color 0.25s ease, transform 0.18s ease;
+  border-radius: 0;
+}
+.resume__btnFlat::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-105%);
+  transition: transform 0.35s cubic-bezier(0.22, 0.8, 0.33, 1);
+  background: linear-gradient(90deg, var(--accent-2), var(--accent));
+  z-index: -1;
+}
+.resume__btnFlat:hover::before {
+  transform: translateX(0);
+}
+.resume__btnFlat:hover {
+  color: #0c1320;
+  border-color: transparent;
+}
+.resume__btnFlat svg {
+  font-size: 1.05rem;
+}
+.resume__btnFlat:focus-visible {
+  outline: 0.12rem solid var(--accent-2);
+  outline-offset: 0.14rem;
+}
+.resume__miniFooter-bottom {
+  margin-top: auto;
+  padding-top: 0.8rem;
+  margin-bottom: -1rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+:root[data-theme="light"] .resume__miniFooter-divider {
+  background: color-mix(in srgb, var(--border) 60%, #000 20%);
+}
+:root[data-theme="light"] .resume__miniFooter-bottom {
+  color: color-mix(in srgb, var(--muted) 70%, #000 20%);
+}
+
+/* <= 900px */
+@media (max-width: 900px) {
+  .resume__container {
+    width: min(820px, 94%);
+  }
+  .resume__controls {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.5rem;
+  }
+  .resume__spacer {
+    display: none;
+  }
+  .resume__btn {
+    justify-content: center;
+    padding: 0.6rem 0.9rem;
+  }
+  .resume__viewer {
+    margin-top: clamp(0.8rem, 2.8vw, 1.2rem);
+  }
+  .resume__frame {
+    height: clamp(62vh, 78dvh, 84dvh);
+  }
+}
+
+/* <= 600px */
+@media (max-width: 600px) {
+  .resume {
+    padding: clamp(4rem, 8vw, 5rem) 1rem clamp(1rem, 4vw, 1.5rem);
+  }
+  .resume__controls {
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+  }
+  .resume__btn {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 0.98rem;
+  }
+  .resume__btn svg {
+    font-size: 1.05rem;
+  }
+  .resume__viewer {
+    margin-top: 0.8rem;
+  }
+  .resume__frame {
+    height: 75vh;
+  }
+  .resume__miniFooter {
+    padding: 2rem 0 1rem 0;
+    gap: 1rem;
+  }
+  .resume__btnFlat {
+    padding: 0.65rem 0.9rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* <= 400px */
+@media (max-width: 400px) {
+  .resume__btn {
+    padding: 0.7rem 0.9rem;
+    font-size: 0.95rem;
+    gap: 0.45rem;
+  }
+  .resume__btn svg {
+    font-size: 1rem;
+  }
+  .resume__frame {
+    height: 70vh;
+  }
+}

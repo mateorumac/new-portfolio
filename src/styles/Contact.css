@@ -1,0 +1,702 @@
+.contact {
+  position: relative;
+  --pad: clamp(4.8rem, 10vw, 8.5rem);
+  --pad-bottom: clamp(2.2rem, 5vw, 3rem);
+  padding-top: var(--pad);
+  padding-bottom: var(--pad-bottom);
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.contact__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.contact__glow {
+  position: absolute;
+  width: min(42rem, 60vw);
+  height: min(42rem, 60vw);
+  filter: blur(6rem);
+  opacity: 0.45;
+  border-radius: 50%;
+}
+.contact__glow--left {
+  left: -10%;
+  top: 10%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    var(--accent-2),
+    transparent 60%
+  );
+}
+.contact__glow--right {
+  right: -12%;
+  bottom: -10%;
+  background: radial-gradient(
+    circle at 60% 40%,
+    var(--accent),
+    transparent 60%
+  );
+}
+
+.contact__flow {
+  position: absolute;
+  inset: -20% -10% -10% -10%;
+  background: conic-gradient(
+    from 180deg at 50% 50%,
+    color-mix(in oklab, var(--accent-2) 55%, transparent),
+    color-mix(in oklab, var(--accent) 55%, transparent),
+    color-mix(in oklab, var(--accent-hot, #d19cff) 55%, transparent),
+    color-mix(in oklab, var(--accent-2) 55%, transparent)
+  );
+  filter: blur(7rem) saturate(115%);
+  opacity: 0.28;
+  animation: contactFlow 24s linear infinite;
+}
+@keyframes contactFlow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.contact__grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+      to right,
+      color-mix(in oklab, var(--text) 6%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--text) 6%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 3.5rem 3.5rem;
+  opacity: 0.12;
+}
+
+.contact__container {
+  position: relative;
+  z-index: 1;
+  width: min(1200px, 92%);
+  margin-inline: auto;
+  grid-row: 1;
+}
+
+.contact__title {
+  margin: 0 0 clamp(1.6rem, 4.5vw, 2.6rem);
+  font-weight: 800;
+  font-size: clamp(2.8rem, 7vw, 4.6rem);
+  letter-spacing: 0.02em;
+  text-align: left;
+}
+
+.contact__content {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(1.2rem, 3.4vw, 2rem);
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .contact__content {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact__lead {
+  margin: 0 0 0.45rem;
+  font-size: clamp(1.28rem, 1.04rem + 0.9vw, 1.7rem);
+  font-weight: 700;
+}
+
+.contact__copy {
+  margin: 0 0 1rem;
+  color: color-mix(in oklab, var(--text) 92%, white 8%);
+  font-size: clamp(0.98rem, 0.86rem + 0.45vw, 1.12rem);
+}
+
+.contact__copy a {
+  color: var(--brand-2);
+  text-decoration: none;
+}
+.contact__copy a:hover {
+  color: var(--brand);
+}
+
+.contact__lead {
+  margin-bottom: 0.55rem;
+}
+.contact__copy {
+  margin-bottom: 1.1rem;
+}
+
+.contact__social {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin: 0 0 1rem;
+}
+
+.contact__social-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  color: var(--text);
+  text-decoration: none;
+  overflow: hidden;
+  z-index: 0;
+  transition: color 0.25s ease, border-color 0.25s ease, transform 0.18s ease;
+}
+.contact__social-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-105%);
+  transition: transform 0.35s cubic-bezier(0.22, 0.8, 0.33, 1);
+  background: linear-gradient(90deg, var(--accent-2), var(--accent));
+  z-index: -1;
+}
+.contact__social-btn:hover::before {
+  transform: translateX(0);
+}
+.contact__social-btn:hover {
+  color: #0c1320;
+  border-color: transparent;
+}
+
+.contact__social-btn svg {
+  font-size: 1.1rem;
+}
+
+.contact__social-btn:focus-visible {
+  outline: 0.12rem solid var(--accent-2);
+  outline-offset: 0.14rem;
+}
+
+.contact__note {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.contact__form {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  padding: clamp(1.2rem, 3.6vw, 1.8rem);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(0.8rem, 2.2vw, 1rem);
+  max-width: clamp(360px, 34vw, 480px);
+  justify-self: end;
+  width: 100%;
+  margin-top: calc(-1 * (clamp(1.6rem, 4.5vw, 2.6rem) + 0.2rem));
+}
+@media (max-width: 900px) {
+  .contact__form {
+    max-width: 100%;
+    justify-self: stretch;
+  }
+}
+.field {
+  display: grid;
+  gap: 0.35rem;
+}
+.field--full {
+  grid-column: 1 / -1;
+}
+
+.contact__form label {
+  font-size: 0.95rem;
+  color: color-mix(in oklab, var(--text) 90%, white 10%);
+}
+
+.contact__form input,
+.contact__form textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--panel) 92%, black 8%);
+  color: var(--text);
+  padding: 0.8rem 1rem;
+  font: inherit;
+}
+.contact__form textarea {
+  resize: vertical;
+}
+
+.contact__form input:focus,
+.contact__form textarea:focus {
+  outline: 0.13rem solid var(--accent-2);
+  outline-offset: 0.05rem;
+}
+
+.form__actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  margin-top: 0.35rem;
+}
+
+/* ikonica malo veća i uvijek poravnata s tekstom */
+.form__actions .btn svg {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex-shrink: 0;
+}
+
+/* osnovni gumb u contact sekciji */
+.contact .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.78rem 1.1rem;
+  font-weight: 700;
+  font-size: 0.98rem;
+  line-height: 1;
+  border: 1px solid transparent;
+  border-radius: 0;
+  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.18);
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+/* primarni: mint baza, gradijent sweep na hover */
+.contact .btn.primary {
+  background: var(--brand);
+  color: #0c1320;
+}
+
+.contact .btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-105%);
+  transition: transform 0.35s cubic-bezier(0.22, 0.8, 0.33, 1);
+  z-index: -1;
+}
+
+.contact .btn.primary::before {
+  background: linear-gradient(90deg, var(--accent-2), var(--accent));
+}
+
+.contact .btn:hover::before {
+  transform: translateX(0);
+}
+.contact .btn.primary:hover {
+  border-color: transparent;
+}
+
+.contact__cue {
+  --cue-color: color-mix(in oklab, var(--text) 92%, var(--bg) 8%);
+  --cue-delay: 0.6s;
+  --cue-rise: 1.4s;
+  --cue-bounce: 1.2s;
+  --cue-bob: 1rem;
+
+  position: absolute;
+  left: 50%;
+  bottom: clamp(1rem, 3vw, 1.6rem);
+  width: 0.95rem;
+  height: 0.95rem;
+  border-bottom: 0.26rem solid var(--cue-color);
+  border-right: 0.26rem solid var(--cue-color);
+  transform: translateX(-50%) translateY(2.6rem) rotate(225deg);
+  opacity: 0;
+  will-change: transform, opacity;
+  z-index: 2;
+  filter: drop-shadow(
+    0 0 6px color-mix(in oklab, var(--cue-color) 55%, transparent)
+  );
+  animation: none;
+}
+
+.contact__cue.is-visible {
+  animation: cueRise var(--cue-rise) cubic-bezier(0.2, 0.7, 0.25, 1)
+      var(--cue-delay) both,
+    cueBobContact var(--cue-bounce) cubic-bezier(0.42, 0, 0.2, 1)
+      calc(var(--cue-delay) + var(--cue-rise)) infinite alternate;
+}
+
+@keyframes cueRise {
+  from {
+    transform: translateX(-50%) translateY(2.6rem) rotate(225deg);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%) translateY(calc(-1 * var(--cue-bob)))
+      rotate(225deg);
+    opacity: 1;
+  }
+}
+
+@keyframes cueBobContact {
+  from {
+    transform: translateX(-50%) translateY(calc(-1 * var(--cue-bob)))
+      rotate(225deg);
+  }
+  to {
+    transform: translateX(-50%) translateY(0) rotate(225deg);
+  }
+}
+
+.contact__footer {
+  grid-row: 3;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: var(--muted);
+  margin-top: clamp(2.5rem, 6vw, 3.5rem);
+  padding-bottom: clamp(1.2rem, 3vw, 1.6rem);
+  margin-bottom: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.25, 1),
+      opacity 0.7s ease;
+  }
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+  [data-reveal="slide-left"] {
+    transform: translateX(-28px);
+  }
+  [data-reveal="slide-right"] {
+    transform: translateX(28px);
+  }
+  .contact__footer[data-reveal] {
+    opacity: 0;
+    transform: translateX(-24px);
+    transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.25, 1),
+      opacity 0.7s ease;
+  }
+  .contact__footer.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+  [data-reveal="fade-up"] {
+    transform: translateY(22px);
+  }
+}
+
+:root[data-theme="light"] .contact__flow {
+  opacity: 0.34;
+  filter: blur(6rem) saturate(115%);
+}
+:root[data-theme="light"] .contact__grid {
+  opacity: 0.1;
+}
+
+/*TOAST*/
+
+.toast {
+  position: fixed;
+  left: clamp(1rem, 3vw, 1.8rem);
+  bottom: clamp(4rem, 8vh, 5rem);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  max-width: min(92%, 380px);
+  padding: 0.9rem 1.1rem;
+  background: color-mix(in oklab, var(--panel) 94%, black 6%);
+  color: var(--text);
+  border: 1px solid var(--border);
+  box-shadow: 0 0.65rem 1.4rem rgba(0, 0, 0, 0.25);
+  border-radius: 0.4rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(1rem);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.toast.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.toast button {
+  all: unset;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.2rem;
+  color: var(--muted);
+}
+
+.toast button:hover {
+  color: var(--text);
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* LIGHT MODE — bijeli tekst na hover za social gumbe */
+:root[data-theme="light"] .contact__social-btn:hover {
+  color: #ffffff !important;
+}
+
+/* LIGHT MODE — bijeli tekst na hover za gumb "Send message" / primary */
+:root[data-theme="light"] .contact .btn.primary:hover {
+  color: #ffffff !important;
+}
+
+@media (max-width: 1024px) {
+  .contact {
+    padding-top: 4.6rem;
+    padding-bottom: 2.4rem;
+    min-height: 70dvh;
+  }
+
+  .contact__container {
+    width: min(960px, 94%);
+  }
+
+  .contact__title {
+    font-size: 3.4rem;
+    margin-bottom: 2rem;
+  }
+
+  .contact__content {
+    gap: 2.4rem;
+  }
+
+  .contact__lead {
+    font-size: 1.55rem;
+  }
+
+  .contact__copy {
+    font-size: 1.28rem;
+    line-height: 1.7;
+  }
+
+  .contact__social-btn {
+    padding: 0.7rem 1rem;
+    font-size: 1.1rem;
+  }
+
+  .contact__form {
+    padding: 2.2rem 2rem 1.9rem;
+    max-width: 460px;
+  }
+
+  .contact__form label {
+    font-size: 1.05rem;
+  }
+
+  .contact__form input,
+  .contact__form textarea {
+    padding: 1rem 1.2rem;
+    font-size: 1.1rem;
+  }
+
+  .contact .btn {
+    padding: 1.15rem 1.35rem;
+    font-size: 1.15rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .contact {
+    padding-top: 4.4rem;
+    padding-bottom: 2.8rem;
+    min-height: 100dvh;
+  }
+
+  .contact__container {
+    width: 94%;
+  }
+
+  .contact__title {
+    font-size: 3rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .contact__content {
+    grid-template-columns: 1fr;
+    gap: 2.2rem;
+  }
+
+   .contact__left {
+    margin-bottom: 1rem;
+  }
+
+  .contact__form {
+    max-width: 100%;
+    padding: 2rem 1.8rem 1.6rem;
+  }
+
+  .contact__lead {
+    font-size: 1.45rem;
+  }
+
+  .contact__copy {
+    font-size: 1.15rem;
+  }
+
+  .contact__social-btn {
+    padding: 0.65rem 0.9rem;
+    font-size: 1rem;
+  }
+
+  .contact__form input,
+  .contact__form textarea {
+    padding: 0.9rem 1.1rem;
+    font-size: 1.05rem;
+  }
+
+  .contact .btn {
+    padding: 1rem 1.3rem;
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .contact {
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+    min-height: 120dvh;
+  }
+
+  .contact__container {
+    width: 92%;
+  }
+
+  .contact__title {
+    font-size: 2.6rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact__content {
+    gap: 2rem;
+  }
+
+  .contact__lead {
+    font-size: 1.25rem;
+  }
+
+  .contact__copy {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .contact__social {
+    gap: 0.5rem;
+  }
+
+  .contact__social-btn {
+    padding: 0.55rem 0.8rem;
+    font-size: 0.98rem;
+  }
+
+  .contact__left {
+    margin-bottom: 1rem;
+  }
+
+  .contact__form {
+    padding: 1.6rem 1.4rem 1.3rem;
+    max-width: 100%;
+  }
+
+  .contact__form label {
+    font-size: 0.95rem;
+  }
+
+  .contact__form input,
+  .contact__form textarea {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+  }
+
+  .contact .btn {
+    width: 100%;
+    text-align: center;
+    padding: 0.95rem 1.2rem;
+    font-size: 1rem;
+  }
+
+  .contact__glow {
+    width: min(32rem, 54vw);
+    height: min(32rem, 54vw);
+    filter: blur(5rem);
+  }
+}
+
+@media (max-width: 400px) {
+  .contact {
+    padding-top: 3.3rem;
+    padding-bottom: 2rem;
+    min-height: 145dvh;
+  }
+
+  .contact__container {
+    width: 92%;
+  }
+
+  .contact__title {
+    font-size: 1.9rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .contact__lead {
+    font-size: 1.1rem;
+  }
+
+  .contact__copy {
+    font-size: 0.96rem;
+  }
+
+  .contact__social-btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.92rem;
+  }
+
+  .contact__form {
+    padding: 1.35rem 1.2rem 1.1rem;
+  }
+
+  .contact__form input,
+  .contact__form textarea {
+    padding: 0.75rem 0.9rem;
+    font-size: 0.96rem;
+  }
+
+  .contact .btn {
+    padding: 0.9rem 1.1rem;
+    font-size: 0.95rem;
+  }
+
+  .contact__glow {
+    width: min(26rem, 48vw);
+    height: min(26rem, 48vw);
+    filter: blur(4rem);
+  }
+}

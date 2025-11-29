@@ -1,0 +1,51 @@
+
+/* sun ikona u light modu */
+:root[data-theme="light"] .theme-toggle::before,
+.theme-toggle[data-active-theme="light"]::before {
+  -webkit-mask: url("../assets/sun.svg") no-repeat center / contain !important;
+  mask: url("../assets/sun.svg") no-repeat center / contain !important;
+}
+
+/* LIGHT MODE — dark social rail */
+:root[data-theme="light"] .hero .social-rail,
+:root[data-theme="light"] .hero .social-rail__bar,
+:root[data-theme="light"] .hero .social-rail__bar::before,
+:root[data-theme="light"] .hero .social-rail__bar::after {
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+}
+
+:root[data-theme="light"] .hero .social-rail__bar,
+:root[data-theme="light"] .hero .social-rail__bar::before,
+:root[data-theme="light"] .hero .social-rail__bar::after {
+  background: linear-gradient(180deg, #0f172a, #334155) !important;
+  box-shadow: 0 0 1.1rem rgba(0,0,0,.18) !important;
+}
+
+:root[data-theme="light"] .hero .social-rail__btn {
+  color: #0f172a !important;
+}
+:root[data-theme="light"] .hero .social-rail__btn:hover {
+  color: var(--accent-2) !important;
+}
+
+/* LIGHT MODE — suptilniji background efekti u hero sekciji */
+:root[data-theme="light"] .hero .flow{
+  mix-blend-mode: normal;
+  opacity: .40;
+  filter: blur(3.6rem) saturate(112%);
+}
+:root[data-theme="light"] .hero .grid{
+  opacity: .14;
+}
+
+/* ghost gumb hover u lightu */
+:root[data-theme="light"] .hero .btn.ghost:hover{
+  background: color-mix(in oklab, var(--panel-2) 85%, black 8%);
+}
+
+/* LIGHT MODE – hover tekst bijeli na CTA gumbima */
+:root[data-theme="light"] .hero .btn.primary:hover,
+:root[data-theme="light"] .hero .btn.ghost:hover {
+  color: white !important;
+}
