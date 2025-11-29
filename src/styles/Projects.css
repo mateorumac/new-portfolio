@@ -570,3 +570,10 @@
     max-width: 14rem !important;
   }
 }
+
+@media (max-width: 400px) and (min-height: 780px) {
+  .work__note,
+  .work__disclaimer {
+    max-width: 17rem !important;
+  }
+}

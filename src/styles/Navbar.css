@@ -441,6 +441,7 @@ html[data-theme="light"] .theme-toggle::before {
 }
 
 @media (max-width: 900px) {
+
   .navbar__inner {
     padding: 0 1rem;
   }
@@ -452,7 +453,7 @@ html[data-theme="light"] .theme-toggle::before {
 
 @media (max-width: 600px) {
   .navbar {
-    --nav-height: 3.75rem;
+    --nav-height: 4rem;
   }
 
   .brand__logo {
@@ -474,6 +475,9 @@ html[data-theme="light"] .theme-toggle::before {
 }
 
 @media (max-width: 400px) {
+   .navbar {
+    --nav-height: 3.75rem;
+  }
   .navbar__inner {
     padding: 0 0.75rem;
   }
