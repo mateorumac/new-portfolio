@@ -17,11 +17,19 @@ function LangLayout() {
 
     document.documentElement.lang = currentLang;
 
+    const isHr = currentLang === "hr";
+
+    const pageTitle = isHr
+      ? "Mateo Rumac | Frontend i Web Developer"
+      : "Mateo Rumac | Frontend & Web Developer";
+
+    document.title = pageTitle;
+
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
       metaDesc.setAttribute(
         "content",
-        currentLang === "hr"
+        isHr
           ? "Portfolio frontend developera Matea Rumca. Izrađujem brza, pristupačna i moderno dizajnirana web rješenja s naglaskom na React, UX i performanse."
           : "Portfolio of frontend developer Mateo Rumac. I build fast, accessible and thoughtfully crafted web experiences with a strong focus on React, UX and performance."
       );
@@ -31,17 +39,16 @@ function LangLayout() {
     if (keywords) {
       keywords.setAttribute(
         "content",
-        currentLang === "hr"
+        isHr
           ? "frontend developer, web developer, React developer, Pula, Hrvatska, remote, JavaScript, Vite, Next.js, dizajn sučelja, moderne web aplikacije"
           : "frontend developer, web developer, React developer, Croatia, remote, JavaScript, Vite, Next.js, UI design, modern web applications"
       );
     }
 
     const canonical = document.querySelector('link[rel="canonical"]');
-    const url =
-      currentLang === "hr"
-        ? "https://mateorumac.com/hr"
-        : "https://mateorumac.com/en";
+    const url = isHr
+      ? "https://mateorumac.com/hr"
+      : "https://mateorumac.com/en";
 
     if (canonical) {
       canonical.setAttribute("href", url);
@@ -52,17 +59,29 @@ function LangLayout() {
       document.head.appendChild(newCanonical);
     }
 
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) {
+      ogTitle.setAttribute("content", pageTitle);
+    }
+
     const ogDesc = document.querySelector('meta[property="og:description"]');
     if (ogDesc && metaDesc) {
       ogDesc.setAttribute("content", metaDesc.content);
     }
 
+    const ogUrl = document.querySelector('meta[property="og:url"]');
+    if (ogUrl) {
+      ogUrl.setAttribute("content", url);
+    }
+
     const ogLocale = document.querySelector('meta[property="og:locale"]');
     if (ogLocale) {
-      ogLocale.setAttribute(
-        "content",
-        currentLang === "hr" ? "hr_HR" : "en_US"
-      );
+      ogLocale.setAttribute("content", isHr ? "hr_HR" : "en_US");
+    }
+
+    const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+    if (twitterTitle) {
+      twitterTitle.setAttribute("content", pageTitle);
     }
   }, [currentLang]);
 

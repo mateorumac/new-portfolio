@@ -131,6 +131,22 @@
   color: color-mix(in oklab, var(--text) 82%, transparent 18%);
 }
 
+/* ----- INLINE LINK ----- */
+.easeful__inline-link {
+  color: var(--accent);
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0 1.5px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.35s ease;
+}
+
+.easeful__inline-link:hover,
+.easeful__inline-link:focus-visible {
+  background-size: 100% 1.5px;
+}
+
 /* ----- CTA BUTTONS ----- */
 .easeful__cta {
   display: flex;
@@ -258,6 +274,7 @@
   .easeful [data-delay="100"] { transition-delay: 0.10s; }
   .easeful [data-delay="160"] { transition-delay: 0.16s; }
   .easeful [data-delay="180"] { transition-delay: 0.18s; }
+  .easeful [data-delay="280"] { transition-delay: 0.28s; }
   .easeful [data-delay="260"] { transition-delay: 0.26s; }
 
   /* Mockup gets a more cinematic entrance: slides in from the right */

@@ -192,7 +192,7 @@ export default function Projects() {
             <li key={idx} className="work__item" data-reveal="fade-up">
               <article className="work__card">
                 <div className="work__media">
-                  <img src={p.img} alt={p.title} loading="lazy" />
+                  <img src={p.img} alt={p.title} loading="lazy" width="1600" height="900" />
                   <div className="work__info">
                     <h3 className="work__name">{p.title}</h3>
                     <p className="work__desc">{p.desc}</p>

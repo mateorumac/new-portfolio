@@ -59,8 +59,20 @@ export default function Easeful() {
                 {t("What does this decision actually cost me \u2014 in time?")}
               </p>
               <p>
+                <a
+                  href="https://tryeaseful.com/en"
+                  className="easeful__inline-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Easeful financial decision app"
+                >
+                  Easeful
+                </a>
+                {t(" is a financial decision app that helps users understand how spending affects their life runway, not just their account balance.")}
+              </p>
+              <p>
                 {t(
-                  "Most finance apps track the past. Easeful helps you think about the future. Enter your income and expenses, then model real-life scenarios: a job change, a big move, a pay cut. You get a runway in months, not a spreadsheet."
+                  "Instead of focusing on traditional budgeting, the product translates expenses into time and impact. It is designed to answer a simple question: what does this decision actually cost me?"
                 )}
               </p>
             </div>
@@ -70,7 +82,8 @@ export default function Easeful() {
                 href="https://app.tryeaseful.com"
                 className="btn primary"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
+                title="Easeful financial decision app"
               >
                 {t("Try Easeful")}
                 <svg
@@ -91,7 +104,8 @@ export default function Easeful() {
                 href="https://tryeaseful.com/en"
                 className="btn ghost"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
+                title="Easeful financial decision app"
               >
                 {t("More about the product")}
               </a>
@@ -99,11 +113,11 @@ export default function Easeful() {
           </div>
 
           {/* RIGHT: real product screenshot */}
-          <div className="easeful__visual" data-reveal data-delay="180">
+          <div className="easeful__visual" data-reveal data-delay="280">
             <div className="easeful__glow-under" aria-hidden="true" />
             <img
               src={easefulMockup}
-              alt="Easeful app screenshot"
+              alt="Easeful financial decision app screenshot"
               className="easeful__img"
               loading="lazy"
               decoding="async"
