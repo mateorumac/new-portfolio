@@ -1,0 +1,412 @@
+/* =========================================================
+   EASEFUL — Featured product section
+   Sits between Career and Selected Work
+   ========================================================= */
+
+.easeful {
+  position: relative;
+  padding-block: clamp(5rem, 11vw, 9rem);
+  isolation: isolate;
+  overflow: hidden;
+  color: var(--text);
+}
+
+/* ----- BACKGROUND GLOW BLOBS ----- */
+.easeful::before,
+.easeful::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(72px);
+  opacity: 0.13;
+  animation: easefulBg 24s linear infinite;
+}
+
+.easeful::before {
+  inset: auto auto -10% -6%;
+  width: 42vw;
+  height: 42vw;
+  max-width: 620px;
+  max-height: 620px;
+  background:
+    radial-gradient(58% 58% at 35% 35%, var(--accent-hot) 0%, transparent 60%),
+    radial-gradient(58% 58% at 68% 68%, var(--accent-2) 0%, transparent 60%);
+}
+
+.easeful::after {
+  inset: -10% -8% auto auto;
+  width: 38vw;
+  height: 38vw;
+  max-width: 540px;
+  max-height: 540px;
+  background:
+    radial-gradient(56% 56% at 60% 35%, var(--accent) 0%, transparent 60%),
+    radial-gradient(56% 56% at 30% 70%, var(--accent-2) 0%, transparent 60%);
+}
+
+@keyframes easefulBg {
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50%  { transform: translate3d(2%, -2%, 0) rotate(8deg); }
+  100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+}
+
+/* ----- CONTAINER ----- */
+.easeful__container {
+  position: relative;
+  z-index: 1;
+  width: min(1200px, 92%);
+  margin-inline: auto;
+}
+
+/* ----- TWO-COLUMN LAYOUT ----- */
+.easeful__inner {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(3rem, 6vw, 5.5rem);
+  align-items: center;
+}
+
+/* ----- LEFT: CONTENT ----- */
+.easeful__content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Logo + eyebrow row */
+.easeful__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: clamp(1rem, 2.2vw, 1.35rem);
+}
+
+.easeful__logo {
+  width: auto;
+  height: 28px;
+  object-fit: contain;
+  flex-shrink: 0;
+  border-radius: 6px;
+}
+
+.easeful__eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brand);
+}
+
+.easeful__heading {
+  margin: 0 0 clamp(1rem, 2.2vw, 1.4rem);
+  font-weight: 800;
+  font-size: clamp(3rem, 7.5vw, 5.2rem);
+  letter-spacing: 0.01em;
+  line-height: 1;
+  background: linear-gradient(120deg, var(--accent) 0%, var(--accent-2) 55%, var(--accent-hot) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.easeful__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+.easeful__hook {
+  margin: 0;
+  font-size: clamp(1.05rem, 0.9rem + 0.55vw, 1.22rem);
+  font-weight: 600;
+  line-height: 1.5;
+  color: color-mix(in oklab, var(--text) 94%, white 6%);
+}
+
+.easeful__body p:not(.easeful__hook) {
+  margin: 0;
+  font-size: clamp(0.97rem, 0.88rem + 0.35vw, 1.07rem);
+  line-height: 1.74;
+  color: color-mix(in oklab, var(--text) 82%, transparent 18%);
+}
+
+/* ----- CTA BUTTONS ----- */
+.easeful__cta {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.easeful__cta .btn {
+  position: relative;
+  overflow: hidden;
+  padding: 0.78rem 1.1rem;
+  border-radius: 0;
+  font-size: 0.98rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  transition: color 0.25s ease, border-color 0.25s ease;
+  z-index: 0;
+}
+
+.easeful__cta .btn.primary {
+  background: var(--brand);
+  color: #0c1320;
+  border: 1px solid transparent;
+}
+
+.easeful__cta .btn.ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  box-shadow: none;
+}
+
+.easeful__cta .btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-105%);
+  transition: transform 0.35s cubic-bezier(0.22, 0.8, 0.33, 1);
+  z-index: -1;
+}
+
+.easeful__cta .btn.primary::before {
+  background: linear-gradient(90deg, var(--accent-2), var(--accent));
+}
+
+.easeful__cta .btn.ghost::before {
+  background: linear-gradient(90deg, var(--accent-2), var(--accent));
+}
+
+.easeful__cta .btn:hover::before,
+.easeful__cta .btn:focus-visible::before {
+  transform: translateX(0);
+}
+
+.easeful__cta .btn.ghost:hover,
+.easeful__cta .btn.ghost:focus-visible {
+  color: #0c1320;
+  border-color: transparent;
+}
+
+.easeful__cta .btn svg {
+  flex-shrink: 0;
+  transition: transform 0.25s cubic-bezier(0.22, 0.8, 0.33, 1);
+}
+
+.easeful__cta .btn:hover svg {
+  transform: translateX(3px);
+}
+
+/* ----- RIGHT: PRODUCT IMAGE ----- */
+.easeful__visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.easeful__glow-under {
+  position: absolute;
+  inset: 10% -12% -14% -12%;
+  background: radial-gradient(
+    ellipse 65% 55% at 50% 85%,
+    color-mix(in oklab, var(--accent) 24%, transparent) 0%,
+    transparent 70%
+  );
+  filter: blur(32px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.easeful__img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  transform: perspective(1000px) rotateY(-3deg) rotateX(1.5deg);
+  transition: transform 0.6s cubic-bezier(0.22, 0.8, 0.33, 1);
+}
+
+.easeful__visual:hover .easeful__img {
+  transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+}
+
+/* ----- SCROLL REVEAL ----- */
+@media (prefers-reduced-motion: no-preference) {
+  .easeful [data-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 0.65s ease,
+      transform 0.65s cubic-bezier(0.2, 0.7, 0.25, 1);
+  }
+
+  .easeful [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .easeful [data-delay="80"]  { transition-delay: 0.08s; }
+  .easeful [data-delay="100"] { transition-delay: 0.10s; }
+  .easeful [data-delay="160"] { transition-delay: 0.16s; }
+  .easeful [data-delay="180"] { transition-delay: 0.18s; }
+  .easeful [data-delay="260"] { transition-delay: 0.26s; }
+
+  /* Mockup gets a more cinematic entrance: slides in from the right */
+  .easeful__visual[data-reveal] {
+    opacity: 0;
+    transform: translateX(48px) translateY(16px);
+    transition:
+      opacity 0.85s ease,
+      transform 0.85s cubic-bezier(0.2, 0.7, 0.25, 1);
+  }
+
+  .easeful__visual[data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ----- LIGHT MODE ----- */
+
+/* Give the ghost button a visible border in light mode */
+:root[data-theme="light"] .easeful__cta .btn.ghost {
+  border-color: color-mix(in oklab, var(--text) 30%, transparent);
+}
+
+/* Replace the near-white ghost hover fill with the same gradient sweep as the rest of the site */
+:root[data-theme="light"] .easeful__cta .btn.ghost::before {
+  background: linear-gradient(90deg, var(--accent-2), var(--accent));
+}
+
+:root[data-theme="light"] .easeful__cta .btn.ghost:hover,
+:root[data-theme="light"] .easeful__cta .btn.ghost:focus-visible {
+  color: #0c1320;
+  border-color: transparent;
+}
+
+/* Primary hover text stays readable */
+:root[data-theme="light"] .easeful__cta .btn.primary:hover {
+  color: #ffffff;
+}
+
+/* ----- RESPONSIVE ----- */
+
+@media (max-width: 1024px) {
+  .easeful {
+    padding-block: 5.8rem;
+  }
+
+  .easeful__container {
+    width: min(960px, 94%);
+  }
+
+  .easeful__heading {
+    font-size: 4rem;
+  }
+
+  .easeful__hook {
+    font-size: 1.22rem;
+  }
+
+  .easeful__body p:not(.easeful__hook) {
+    font-size: 1.18rem;
+    line-height: 1.76;
+  }
+
+  .easeful__cta .btn {
+    padding: 0.95rem 1.35rem;
+    font-size: 1.05rem;
+  }
+
+  .easeful__img {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 900px) {
+  .easeful {
+    padding-block: 5rem;
+  }
+
+  .easeful__container {
+    width: 94%;
+  }
+
+  .easeful__inner {
+    grid-template-columns: 1fr;
+    gap: clamp(2.4rem, 5vw, 3.2rem);
+  }
+
+  .easeful__img {
+    transform: none;
+    max-width: 320px;
+    margin-inline: auto;
+  }
+
+  .easeful__visual:hover .easeful__img {
+    transform: none;
+  }
+
+  .easeful__heading {
+    font-size: 3.6rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .easeful {
+    padding-block: 4.2rem;
+  }
+
+  .easeful__container {
+    width: 92%;
+  }
+
+  .easeful__heading {
+    font-size: clamp(2.6rem, 10vw, 3.6rem);
+  }
+
+  .easeful__hook {
+    font-size: 1.05rem;
+  }
+
+  .easeful__body p:not(.easeful__hook) {
+    font-size: 0.98rem;
+  }
+
+  .easeful__cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .easeful__cta .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .easeful__img {
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 400px) {
+  .easeful {
+    padding-block: 3.8rem;
+  }
+
+  .easeful__heading {
+    font-size: 2.4rem;
+  }
+
+  .easeful__img {
+    max-width: 260px;
+  }
+}
