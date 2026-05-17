@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import i18n from "../i18n";
 import "../styles/Navbar.css";
 
-import logo from "../assets/logo-96.webp";
+import logo from "../assets/logo.webp";
 
 export default function Navbar() {
   const { t } = useTranslation();

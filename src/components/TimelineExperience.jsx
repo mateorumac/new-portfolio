@@ -23,43 +23,84 @@ export default function TimelineExperience() {
       .filter(Boolean);
 
     let hasStartedProgress = false;
+    let trackRaf = null;
+    let hoverEndTime = 0;
 
-    const layoutRail = () => {
-      if (!dots.length) return;
-
+    const getRailMetrics = () => {
+      if (!dots.length) return null;
       const wrapTop = tl.getBoundingClientRect().top + window.scrollY;
       const firstRect = dots[0].getBoundingClientRect();
       const lastRect = dots[dots.length - 1].getBoundingClientRect();
-
       const firstCenter =
         firstRect.top + window.scrollY - wrapTop + firstRect.height / 2;
       const lastCenter =
         lastRect.top + window.scrollY - wrapTop + lastRect.height / 2;
+      return {
+        railTop: firstCenter,
+        railHeight: Math.max(0, lastCenter - firstCenter),
+      };
+    };
 
-      const railTop = firstCenter;
-      const railHeight = Math.max(0, lastCenter - firstCenter);
-
-      rail.style.top = `${railTop}px`;
-      rail.style.height = `${railHeight}px`;
-      progress.style.top = `${railTop}px`;
-
+    const layoutRail = () => {
+      const m = getRailMetrics();
+      if (!m) return;
+      rail.style.top = `${m.railTop}px`;
+      rail.style.height = `${m.railHeight}px`;
+      progress.style.top = `${m.railTop}px`;
       if (hasStartedProgress) {
-        progress.style.height = `${railHeight}px`;
+        progress.style.height = `${m.railHeight}px`;
       } else {
         progress.style.height = "0px";
       }
     };
 
+    const trackLoop = () => {
+      layoutRail();
+      if (performance.now() < hoverEndTime) {
+        trackRaf = requestAnimationFrame(trackLoop);
+      } else {
+        trackRaf = null;
+        layoutRail();
+      }
+    };
+
+    const startTracking = () => {
+      hoverEndTime = performance.now() + 1100;
+      if (!trackRaf) trackRaf = requestAnimationFrame(trackLoop);
+    };
+
+    const stopTracking = () => {
+      hoverEndTime = performance.now() + 1100;
+    };
+
+    const cards = Array.from(tl.querySelectorAll(".tl__card"));
+    cards.forEach((card) => {
+      card.addEventListener("mouseenter", startTracking);
+      card.addEventListener("mouseleave", stopTracking);
+      card.addEventListener("focusin", startTracking);
+      card.addEventListener("focusout", stopTracking);
+    });
+
     const startProgressIfReady = () => {
       if (hasStartedProgress) return;
       const secondItem = items[1];
-      if (!secondItem) return;
+      if (!secondItem?.classList.contains("is-visible")) return;
 
-      if (secondItem.classList.contains("is-visible")) {
-        const railH = rail.offsetHeight || 0;
-        progress.style.height = `${railH}px`;
-        hasStartedProgress = true;
-      }
+      hasStartedProgress = true;
+      const m = getRailMetrics();
+      if (!m) return;
+
+      const target = m.railHeight;
+      const start = performance.now();
+      const duration = 550;
+      const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+
+      const animateIn = (now) => {
+        const t = Math.min((now - start) / duration, 1);
+        progress.style.height = `${target * easeOut(t)}px`;
+        if (t < 1) requestAnimationFrame(animateIn);
+      };
+      requestAnimationFrame(animateIn);
     };
 
     const onScroll = () => {
@@ -67,9 +108,7 @@ export default function TimelineExperience() {
 
       items.forEach((li) => {
         const r = li.getBoundingClientRect();
-        if (r.top < vh * 0.8) {
-          li.classList.add("is-visible");
-        }
+        if (r.top < vh * 0.8) li.classList.add("is-visible");
       });
 
       if (items[0]?.classList.contains("is-visible")) {
@@ -113,6 +152,13 @@ export default function TimelineExperience() {
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
+      if (trackRaf) cancelAnimationFrame(trackRaf);
+      cards.forEach((card) => {
+        card.removeEventListener("mouseenter", startTracking);
+        card.removeEventListener("mouseleave", stopTracking);
+        card.removeEventListener("focusin", startTracking);
+        card.removeEventListener("focusout", stopTracking);
+      });
       ro.disconnect();
       io.disconnect();
     };

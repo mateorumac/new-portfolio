@@ -2,6 +2,8 @@ import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import propMan from "../assets/projects/propMan.webp";
 import dWeb from "../assets/projects/Dandaweb.webp";
+import appostalei from "../assets/projects/appostalei.webp";
+import rentaboat from "../assets/projects/rent-a-boat.webp";
 import daniva from "../assets/projects/daniva.webp";
 import caffe from "../assets/projects/gcaffe.webp";
 import taxi from "../assets/projects/kamidi.webp";
@@ -63,6 +65,38 @@ export default function Projects() {
         "Animations",
         "Portfolio Carousel",
         "Parallax Hero",
+      ],
+    },
+    {
+      title: t("Apposta Lei"),
+      img: appostalei,
+      href: "https://appostalei.com",
+      desc: t(
+        "Premium multilingual website for a hotel cosmetics and equipment distributor, built around curated brand and product hubs for hospitality clients. Features dedicated sections for luxury amenities and hotel equipment, immersive animated hero areas, rich product galleries, showroom and contact pages, and SEO structured content throughout. Available in Croatian, English and Slovenian with a polished responsive experience."
+      ),
+      tech: [
+        "Astro",
+        "Multilingual",
+        "Responsive",
+        "Product Catalog",
+        "Brand Pages",
+        "SEO",
+      ],
+    },
+    {
+      title: t("Rent a Boat Zadar"),
+      img: rentaboat,
+      href: "https://rentaboatzadareu.com",
+      desc: t(
+        "Premium boat rental website for a private charter business in Zadar, featuring a multilingual structure with fleet and destination pages. Includes animated hero sections, detailed boat pages with galleries, pricing tables, curated destination content, and a custom inquiry form with date picker. Fully responsive and built for a high-end tourism experience."
+      ),
+      tech: [
+        "Multilingual",
+        "Responsive",
+        "Fleet Showcase",
+        "Destination Pages",
+        "Custom Inquiry Form",
+        "Animated UX",
       ],
     },
     {
