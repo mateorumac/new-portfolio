@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Allow: /tools/
 
 Sitemap: https://mateorumac.com/sitemap.xml
+Sitemap: https://mateorumac.com/tools/sitemap-index.xml

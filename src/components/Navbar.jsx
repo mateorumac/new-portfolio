@@ -1,6 +1,7 @@
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { FiTool } from "react-icons/fi";
 import i18n from "../i18n";
 import "../styles/Navbar.css";
 
@@ -143,6 +144,16 @@ export default function Navbar() {
 
           {/* DESKTOP DESNA STRANA */}
           <div className="nav__right">
+            <a
+              className="devtools-btn"
+              href="/tools/"
+              aria-label={t("Open DevTools")}
+              title={t("Open DevTools")}
+            >
+              <FiTool aria-hidden="true" />
+              <span>{t("DevTools")}</span>
+            </a>
+
             <button
               className="lang-btn"
               onClick={toggleLang}
@@ -236,6 +247,17 @@ export default function Navbar() {
             </nav>
 
             <div className="nav-drawer__footer">
+              <a
+                className="devtools-btn nav-drawer__devtools"
+                href="/tools/"
+                aria-label={t("Open DevTools")}
+                title={t("Open DevTools")}
+                onClick={closeMenu}
+              >
+                <FiTool aria-hidden="true" />
+                <span>{t("DevTools")}</span>
+              </a>
+
               <button
                 className="lang-btn nav-drawer__lang"
                 onClick={() => {
