@@ -7,6 +7,7 @@ import Resume from "./pages/Resume";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 import ScrollToTop from "./components/ScrollToTop";
+import CookieConsent from "./components/CookieConsent";
 
 function LangLayout() {
   const { lang } = useParams();
@@ -105,6 +106,7 @@ export default function App() {
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <CookieConsent />
     </>
   );
 }

@@ -1,0 +1,135 @@
+.cookie-settings-btn {
+  position: fixed;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 120;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 999px;
+  border: 0.0625rem solid var(--border);
+  background: var(--panel-2);
+  color: var(--text);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  opacity: 1;
+  transform: scale(1);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.15s ease, opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cookie-settings-btn--hidden {
+  opacity: 0;
+  transform: scale(0.85);
+  pointer-events: none;
+}
+
+.cookie-settings-btn:hover {
+  transform: translateY(-0.0625rem);
+  background: var(--panel);
+}
+
+.cookie-settings-btn:focus-visible {
+  outline: 0.125rem solid var(--accent-2);
+  outline-offset: 0.15rem;
+}
+
+.cookie-settings-btn svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.cookie-banner {
+  position: fixed;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 130;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cookie-banner__inner {
+  width: 100%;
+  max-width: 21rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 1.1rem 1.2rem;
+  border-radius: 0.85rem;
+  border: 0.0625rem solid var(--border);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  animation: cookieBannerIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.cookie-banner__inner--closing {
+  animation: cookieBannerOut 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.cookie-banner__title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--text);
+}
+
+.cookie-banner__text {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.cookie-banner__actions {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.cookie-banner__btn {
+  flex: 1;
+  justify-content: center;
+  height: 2.35rem;
+  padding: 0 1rem;
+  font-size: 0.88rem;
+}
+
+@keyframes cookieBannerIn {
+  from {
+    opacity: 0;
+    transform: translateY(1.4rem) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes cookieBannerOut {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(1rem) scale(0.97);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cookie-settings-btn,
+  .cookie-banner__inner,
+  .cookie-banner__inner--closing {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .cookie-banner__inner {
+    max-width: none;
+  }
+}

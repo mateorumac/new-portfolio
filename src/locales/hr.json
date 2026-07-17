@@ -143,6 +143,11 @@
   "DevOps flow with cPanel deployments, Bitbucket Git repos and SSH for server tasks (Composer, Stripe and dependencies). Testing with Postman.": "DevOps tijek rada uz implementacije preko cPanela, Bitbucket Git repozitorije i SSH za rad na serveru (Composer, Stripe i ovisnosti). Testiranje s Postmanom.",
   "Interactive dashboards in Chart.js visualizing real-time KPIs like occupancy, revenue and OTA channels.": "Interaktivni dashboardi u Chart.js-u koji vizualiziraju KPI pokazatelje u stvarnom vremenu, poput popunjenosti, prihoda i OTA kanala.",
   "Internal Admin Dashboard that automates daily check-out and next-day arrivals, removing manual errors and saving operational time.": "Interni admin dashboard koji automatizira svakodnevne odjave i dolaske sljedećeg dana, uklanja ručne pogreške i štedi operativno vrijeme.",
-  "Brand visuals, presentations and social content, plus analytics tracking and GDPR compliance with cookie consent systems.": "Dizajn vizualnog identiteta, prezentacija i sadržaja za društvene mreže, uz praćenje analitike i usklađenost s GDPR-om kroz sustave upravljanja kolačićima."
+  "Brand visuals, presentations and social content, plus analytics tracking and GDPR compliance with cookie consent systems.": "Dizajn vizualnog identiteta, prezentacija i sadržaja za društvene mreže, uz praćenje analitike i usklađenost s GDPR-om kroz sustave upravljanja kolačićima.",
 
+  "Cookie preferences": "Postavke kolačića",
+  "Cookies": "Kolačići",
+  "I use Google Analytics to see which pages and projects visitors are interested in. Purely optional, and you can turn it off anytime with the icon in the corner.": "Koristim Google Analytics kako bih vidio koje stranice i projekti zanimaju posjetitelje. Potpuno je neobavezno, a možete to isključiti u bilo kojem trenutku putem ikone u kutu.",
+  "Decline": "Odbij",
+  "Accept": "Prihvati"
 }
