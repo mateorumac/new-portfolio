@@ -20,12 +20,18 @@
   right: 0;
   height: var(--nav-height);
   z-index: 100;
+  backdrop-filter: blur(0);
+  background: transparent;
+  border-bottom: 0.0625rem solid transparent;
+  transition: transform 0.24s ease, background 0.3s ease,
+    border-color 0.3s ease, backdrop-filter 0.3s ease;
+  font-family: "Space Grotesk", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+.navbar--scrolled {
   backdrop-filter: blur(0.5rem);
   background: color-mix(in oklab, var(--bg) 88%, transparent);
   border-bottom: 0.0625rem solid var(--border);
-  transition: transform 0.24s ease, background 0.2s ease;
-  font-family: "Space Grotesk", ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 .navbar--hidden {
   transform: translateY(calc(-1 * var(--nav-height) - 0.0625rem));
@@ -85,7 +91,18 @@
   background-repeat: no-repeat;
   background-position: left calc(100% - 0.3rem);
   background-size: 0% 0.15rem;
-  transition: background-size 0.2s ease;
+  transition: background-size 0.2s ease, color 0.3s ease;
+}
+
+/* desktop nav only — dark on the transparent unscrolled navbar for contrast */
+.navlinks .navlink {
+  color: #10131a;
+}
+.navbar--scrolled .navlinks .navlink {
+  color: var(--text);
+}
+.navbar--resume:not(.navbar--scrolled) .navlinks .navlink {
+  color: #fff;
 }
 .navlink:hover,
 .navlink:focus-visible {
@@ -101,17 +118,28 @@
 
 .lang-btn,
 .theme-toggle {
-  height: 2.5rem;
-  min-width: 3.25rem;
-  padding: 0 0.95rem;
-  border-radius: 0.4rem;
-  border: 0.0625rem solid var(--border);
+  width: 2.15rem;
+  height: 2.15rem;
+  padding: 0;
+  border-radius: 50%;
+  border: 0.09rem solid #fff;
   background: var(--panel-2);
   color: var(--text);
-  font-weight: 700;
-  letter-spacing: 0.02em;
   cursor: pointer;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
   transition: background 0.15s ease;
+}
+
+.lang-btn__flag {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 50%;
 }
 
 :root:not([data-theme="light"]) .lang-btn:hover,
@@ -126,7 +154,7 @@
   height: 2.5rem;
   padding: 0 0.95rem;
   border-radius: 999px;
-  border: 0.0625rem solid transparent;
+  border: 0.0625rem solid rgba(0, 0, 0, 0.22);
   background: linear-gradient(90deg, var(--accent) 0%, var(--accent-2) 100%);
   color: var(--bg);
   font-weight: 700;
@@ -157,21 +185,15 @@
 }
 
 .theme-toggle::before {
-  --theme-icon: url("../assets/moon.svg");
+  --theme-icon: url("../assets/icons/moon.svg");
   content: "";
-  width: 1.125rem;
-  height: 1.125rem;
+  width: 0.95rem;
+  height: 0.95rem;
+  flex-shrink: 0;
   display: inline-block;
-  margin-right: 0.5rem;
   background: currentColor;
   -webkit-mask: var(--theme-icon) no-repeat center / contain;
   mask: var(--theme-icon) no-repeat center / contain;
-  vertical-align: middle;
-  position: relative;
-  top: -0.08rem;
-}
-.theme-toggle .label {
-  font-size: 0.95rem;
 }
 
 .lang-btn:focus-visible,
@@ -230,13 +252,15 @@
   top: 0;
   right: 0;
   height: 100vh;
-  width: 100%;
+  width: 85%;
+  max-width: 25rem;
   background: color-mix(in oklab, var(--bg) 96%, black 4%);
+  box-shadow: -1.5rem 0 3rem rgba(0, 0, 0, 0.25);
   transform: translateX(100%);
   opacity: 0;
   pointer-events: none;
-  transition: transform 0.32s cubic-bezier(0.2, 0.7, 0.25, 1),
-    opacity 0.24s ease;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.45s ease;
   z-index: 90;
   display: flex;
   flex-direction: column;
@@ -262,48 +286,48 @@
 .nav-drawer__content {
   flex: 1;
   width: 100%;
-  max-width: 420px;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 2.6rem;
-  padding: 3.2rem var(--drawer-pad-x) 0;
-  padding-top: 5rem;
-  padding-left: clamp(1.8rem, 4vw, 2.4rem);
+  padding: 0 var(--drawer-pad-x) 1.6rem;
 }
 
 :root {
-  --drawer-pad-x: clamp(1rem, 3vw, 1.7rem);
+  --drawer-pad-x: clamp(1.4rem, 5vw, 2rem);
+}
+
+.nav-drawer__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2.6rem;
 }
 
 .nav-drawer__nav {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1.45rem;
+  gap: 1.9rem;
   width: 100%;
 }
 
 .nav-drawer .navlink.nav-drawer__link {
-  font-size: 1.12rem;
+  font-size: 1.4rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
   padding: 0;
 }
 
 .nav-drawer__nav .navlink.nav-drawer__link {
   width: 100%;
-  padding: 0.9rem 0;
+  padding-bottom: 0.9rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   text-align: left;
 }
 
-.nav-drawer__nav .navlink.nav-drawer__link:first-child {
-  border-top: none;
-}
-
 :root[data-theme="light"] .nav-drawer__nav .navlink.nav-drawer__link {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.18);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.14);
 }
 
 .nav-drawer__footer {
@@ -311,6 +335,12 @@
   flex-direction: column;
   gap: 0.9rem;
   width: 100%;
+  padding-top: 1.4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+:root[data-theme="light"] .nav-drawer__footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .nav-drawer__devtools {
@@ -327,45 +357,21 @@
   height: 1rem;
 }
 
-.nav-drawer__lang,
-.nav-drawer__theme {
-  width: min(170px, 100%);
-  height: 3.05rem;
-  border-radius: 0.75rem;
-  border: 0.0625rem solid var(--border);
-  background: color-mix(in oklab, var(--panel-2) 94%, black 6%);
-  display: inline-flex;
+.nav-drawer__toggles {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 0 1.4rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  font-size: 0.92rem;
-}
-
-.nav-drawer__footer {
-  gap: 0.55rem;
-  margin-top: -0.6rem;
+  gap: 0.7rem;
 }
 
 .nav-drawer__lang,
 .nav-drawer__theme {
-  height: 2.7rem;
-  padding: 0 1.1rem;
-  font-size: 0.88rem;
+  width: 2.5rem;
+  height: 2.5rem;
 }
 
 .nav-drawer__theme::before {
-  content: "☾";
-  font-size: 1.4rem;
-  line-height: 1;
-  display: inline-block;
-  margin-right: 0.55rem;
-  transform: translateY(1px);
-}
-
-.nav-drawer__theme[data-active-theme="light"]::before {
-  content: "☀";
+  width: 1.05rem;
+  height: 1.05rem;
 }
 
 .nav-drawer__backdrop {
@@ -374,7 +380,7 @@
   background: rgba(0, 0, 0, 0.35);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.45s ease;
   z-index: 80;
 }
 
@@ -452,7 +458,7 @@
 
 /* Light mode: sun ikonica */
 html[data-theme="light"] .theme-toggle::before {
-  --theme-icon: url("../assets/sun.svg") !important;
+  --theme-icon: url("../assets/icons/sun.svg") !important;
 }
 
 /* LIGHT HOVER – suptilnije (svjetlije) bez bordera */
@@ -523,11 +529,15 @@ html[data-theme="light"] .theme-toggle::before {
   }
 
   .nav-drawer__inner {
-    padding: calc(var(--nav-height) + 0.4rem) 1.1rem 1.4rem;
+    padding: calc(var(--nav-height) + 0.4rem) 0 1.4rem;
+  }
+
+  .nav-drawer__nav {
+    gap: 1.5rem;
   }
 
   .nav-drawer .navlink.nav-drawer__link {
-    padding: 0.6rem 0;
+    font-size: 1.25rem;
   }
 }
 

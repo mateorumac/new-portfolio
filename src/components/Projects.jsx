@@ -84,6 +84,23 @@ export default function Projects() {
       ],
     },
     {
+      title: t("Gran Caffe Monaco"),
+      img: caffe,
+      href: "https://grancaffe.mc",
+      desc: t(
+        "Restaurant website in Monaco with a black and gold theme and a photo-first layout. Includes about, gallery, menu and events pages, contact, and a booking flow via a third party widget. Custom design with refined hover effects and fast mobile performance."
+      ),
+      tech: [
+        "Custom Design",
+        "Photo-first",
+        "Menu",
+        "Events",
+        "Booking Widget",
+        "Hover Effects",
+        "Responsive",
+      ],
+    },
+    {
       title: t("Rent a Boat Zadar"),
       img: rentaboat,
       href: "https://rentaboatzadareu.com",
@@ -132,23 +149,6 @@ export default function Projects() {
       ],
     },
     {
-      title: t("Daniva Brow & Beauty"),
-      img: daniva,
-      href: "https://danivabb.com",
-      desc: t(
-        "One page website for a beauty salon with parallax effects and smooth animations. Includes about and services sections, gallery, client reviews and contact form with external booking link. Responsive design available in English and Croatian."
-      ),
-      tech: [
-        "One Page",
-        "Parallax",
-        "Animations",
-        "Gallery",
-        "Client Reviews",
-        "Multilingual",
-        "Responsive",
-      ],
-    },
-    {
       title: t("Taxi Kamidi"),
       img: taxi,
       href: "https://taxi-kamidi.com/en",
@@ -161,23 +161,6 @@ export default function Projects() {
         "Car Fleet",
         "Services",
         "Multilingual",
-        "Responsive",
-      ],
-    },
-    {
-      title: t("Gran Caffe Monaco"),
-      img: caffe,
-      href: "https://grancaffe.mc",
-      desc: t(
-        "Restaurant website in Monaco with a black and gold theme and a photo-first layout. Includes about, gallery, menu and events pages, contact, and a booking flow via a third party widget. Custom design with refined hover effects and fast mobile performance."
-      ),
-      tech: [
-        "Custom Design",
-        "Photo-first",
-        "Menu",
-        "Events",
-        "Booking Widget",
-        "Hover Effects",
         "Responsive",
       ],
     },
@@ -197,6 +180,23 @@ export default function Projects() {
         "Responsive",
         "Custom Components",
         "Cookie Notice",
+      ],
+    },
+    {
+      title: t("Daniva Brow & Beauty"),
+      img: daniva,
+      href: "https://danivabb.com",
+      desc: t(
+        "One page website for a beauty salon with parallax effects and smooth animations. Includes about and services sections, gallery, client reviews and contact form with external booking link. Responsive design available in English and Croatian."
+      ),
+      tech: [
+        "One Page",
+        "Parallax",
+        "Animations",
+        "Gallery",
+        "Client Reviews",
+        "Multilingual",
+        "Responsive",
       ],
     },
   ];

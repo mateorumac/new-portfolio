@@ -26,6 +26,11 @@
   pointer-events: none;
 }
 
+body.nav-drawer-open .cookie-settings-btn {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .cookie-settings-btn:hover {
   transform: translateY(-0.0625rem);
   background: var(--panel);
@@ -36,9 +41,15 @@
   outline-offset: 0.15rem;
 }
 
-.cookie-settings-btn svg {
-  width: 1.2rem;
-  height: 1.2rem;
+.cookie-settings-btn__icon {
+  width: 1.3rem;
+  height: 1.3rem;
+  object-fit: contain;
+  display: block;
+}
+
+:root:not([data-theme="light"]) .cookie-settings-btn__icon {
+  filter: brightness(0) invert(1);
 }
 
 .cookie-banner {

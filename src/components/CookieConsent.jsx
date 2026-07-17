@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { TbCookie } from "react-icons/tb";
 import { loadGoogleAnalytics, disableGoogleAnalytics } from "../utils/analytics";
+import cookiesIcon from "../assets/icons/cookies.png";
 import "../styles/CookieConsent.css";
 
 const STORAGE_KEY = "mateorumac-analytics-consent";
@@ -85,7 +85,7 @@ export default function CookieConsent() {
         aria-label={t("Cookie preferences")}
         title={t("Cookie preferences")}
       >
-        <TbCookie aria-hidden="true" />
+        <img src={cookiesIcon} alt="" className="cookie-settings-btn__icon" />
       </button>
 
       {bannerMounted && (

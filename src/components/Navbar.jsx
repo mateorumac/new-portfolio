@@ -6,6 +6,8 @@ import i18n from "../i18n";
 import "../styles/Navbar.css";
 
 import logo from "../assets/logo.webp";
+import flagHr from "../assets/icons/croatia.png";
+import flagUs from "../assets/icons/united-states.png";
 
 export default function Navbar() {
   const { t } = useTranslation();
@@ -54,6 +56,7 @@ export default function Navbar() {
   };
 
   const [hidden, setHidden] = useState(false);
+  const [scrolled, setScrolled] = useState(window.scrollY > 8);
   const lastY = useRef(window.scrollY);
 
   useEffect(() => {
@@ -64,6 +67,7 @@ export default function Navbar() {
       else if (d > 6) setHidden(true);
       else if (d < -6) setHidden(false);
       lastY.current = y;
+      setScrolled(y > 8);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -73,6 +77,8 @@ export default function Navbar() {
     if (location.state?.scrollTo) {
       const id = location.state.scrollTo;
       setTimeout(() => doScroll(id), 60);
+    } else {
+      setScrolled(window.scrollY > 8);
     }
   }, [location]);
 
@@ -94,11 +100,14 @@ export default function Navbar() {
   useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = "hidden";
+      document.body.classList.add("nav-drawer-open");
     } else {
       document.body.style.overflow = "";
+      document.body.classList.remove("nav-drawer-open");
     }
     return () => {
       document.body.style.overflow = "";
+      document.body.classList.remove("nav-drawer-open");
     };
   }, [menuOpen]);
 
@@ -114,7 +123,11 @@ export default function Navbar() {
         className={`navbar-hover-zone ${hidden ? "is-active" : ""}`}
         onMouseEnter={() => setHidden(false)}
       />
-      <header className={`navbar ${hidden ? "navbar--hidden" : ""}`}>
+      <header
+        className={`navbar ${hidden ? "navbar--hidden" : ""} ${
+          scrolled ? "navbar--scrolled" : ""
+        } ${location.pathname.endsWith("/resume") ? "navbar--resume" : ""}`}
+      >
         <div className="navbar__inner">
           <Link className="brand" to={`/${currentLang}`}>
             {logo ? (
@@ -160,7 +173,11 @@ export default function Navbar() {
               aria-label={t("Change language")}
               title={t("Change language")}
             >
-              {currentLang.toUpperCase()}
+              <img
+                src={currentLang === "hr" ? flagHr : flagUs}
+                alt=""
+                className="lang-btn__flag"
+              />
             </button>
 
             <button
@@ -177,11 +194,7 @@ export default function Navbar() {
                   : t("Switch to dark mode")
               }
               data-active-theme={theme}
-            >
-              <span className="label">
-                {t(theme === "dark" ? "Dark" : "Light")}
-              </span>
-            </button>
+            />
           </div>
 
           {/* HAMBURGER GUMB (MOBILE) */}
@@ -212,41 +225,41 @@ export default function Navbar() {
           </div>
 
           <div className="nav-drawer__content">
-            <nav className="nav-drawer__nav">
-              <button
-                className="navlink nav-drawer__link"
-                onClick={() => handleNavClickScroll("about")}
-              >
-                {t("About")}
-              </button>
-              <button
-                className="navlink nav-drawer__link"
-                onClick={() => handleNavClickScroll("career")}
-              >
-                {t("Career")}
-              </button>
-              <button
-                className="navlink nav-drawer__link"
-                onClick={() => handleNavClickScroll("projects")}
-              >
-                {t("Projects")}
-              </button>
-              <button
-                className="navlink nav-drawer__link"
-                onClick={() => handleNavClickScroll("contact")}
-              >
-                {t("Contact")}
-              </button>
-              <Link
-                className="navlink nav-drawer__link"
-                to={`/${currentLang}/resume`}
-                onClick={closeMenu}
-              >
-                {t("Resume")}
-              </Link>
-            </nav>
+            <div className="nav-drawer__main">
+              <nav className="nav-drawer__nav">
+                <button
+                  className="navlink nav-drawer__link"
+                  onClick={() => handleNavClickScroll("about")}
+                >
+                  {t("About")}
+                </button>
+                <button
+                  className="navlink nav-drawer__link"
+                  onClick={() => handleNavClickScroll("career")}
+                >
+                  {t("Career")}
+                </button>
+                <button
+                  className="navlink nav-drawer__link"
+                  onClick={() => handleNavClickScroll("projects")}
+                >
+                  {t("Projects")}
+                </button>
+                <button
+                  className="navlink nav-drawer__link"
+                  onClick={() => handleNavClickScroll("contact")}
+                >
+                  {t("Contact")}
+                </button>
+                <Link
+                  className="navlink nav-drawer__link"
+                  to={`/${currentLang}/resume`}
+                  onClick={closeMenu}
+                >
+                  {t("Resume")}
+                </Link>
+              </nav>
 
-            <div className="nav-drawer__footer">
               <a
                 className="devtools-btn nav-drawer__devtools"
                 href="/tools/"
@@ -257,39 +270,42 @@ export default function Navbar() {
                 <FiTool aria-hidden="true" />
                 <span>{t("DevTools")}</span>
               </a>
+            </div>
 
-              <button
-                className="lang-btn nav-drawer__lang"
-                onClick={() => {
-                  toggleLang();
-                  closeMenu();
-                }}
-                aria-label={t("Change language")}
-                title={t("Change language")}
-              >
-                {currentLang.toUpperCase()}
-              </button>
+            <div className="nav-drawer__footer">
+              <div className="nav-drawer__toggles">
+                <button
+                  className="lang-btn nav-drawer__lang"
+                  onClick={() => {
+                    toggleLang();
+                    closeMenu();
+                  }}
+                  aria-label={t("Change language")}
+                  title={t("Change language")}
+                >
+                  <img
+                    src={currentLang === "hr" ? flagHr : flagUs}
+                    alt=""
+                    className="lang-btn__flag"
+                  />
+                </button>
 
-              <button
-              className="theme-toggle nav-drawer__theme"
-              onClick={toggleTheme}
-              aria-label={
-                theme === "dark"
-                  ? t("Switch to light mode")
-                  : t("Switch to dark mode")
-              }
-              title={
-                theme === "dark"
-                  ? t("Switch to light mode")
-                  : t("Switch to dark mode")
-              }
-              data-active-theme={theme}
-            >
-              <span className="theme-toggle__icon" aria-hidden="true" />
-              <span className="label">
-                {t(theme === "dark" ? "Dark" : "Light")}
-              </span>
-            </button>
+                <button
+                  className="theme-toggle nav-drawer__theme"
+                  onClick={toggleTheme}
+                  aria-label={
+                    theme === "dark"
+                      ? t("Switch to light mode")
+                      : t("Switch to dark mode")
+                  }
+                  title={
+                    theme === "dark"
+                      ? t("Switch to light mode")
+                      : t("Switch to dark mode")
+                  }
+                  data-active-theme={theme}
+                />
+              </div>
             </div>
           </div>
         </div>

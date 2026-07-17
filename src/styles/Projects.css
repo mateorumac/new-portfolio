@@ -366,9 +366,18 @@
     padding: 0.32rem 0.55rem;
   }
 
+  .work__actions {
+    width: 100%;
+  }
+
   .work__actions .btn {
     padding: 1.05rem 1.35rem;
     font-size: 1.1rem;
+    width: 100%;
+    justify-content: center;
+  }
+  .work__info--mobile .work__actions .btn.primary {
+    background: linear-gradient(90deg, var(--accent-2), var(--accent));
   }
   .work__bg::before {
     width: clamp(200px, 32vw, 330px);

@@ -2,8 +2,8 @@
 /* sun ikona u light modu */
 :root[data-theme="light"] .theme-toggle::before,
 .theme-toggle[data-active-theme="light"]::before {
-  -webkit-mask: url("../assets/sun.svg") no-repeat center / contain !important;
-  mask: url("../assets/sun.svg") no-repeat center / contain !important;
+  -webkit-mask: url("../assets/icons/sun.svg") no-repeat center / contain !important;
+  mask: url("../assets/icons/sun.svg") no-repeat center / contain !important;
 }
 
 /* LIGHT MODE — dark social rail */

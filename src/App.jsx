@@ -1,4 +1,11 @@
-import { Routes, Route, Navigate, Outlet, useParams } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  Navigate,
+  Outlet,
+  useParams,
+  useLocation,
+} from "react-router-dom";
 import { useEffect } from "react";
 import i18n from "./i18n";
 
@@ -11,6 +18,7 @@ import CookieConsent from "./components/CookieConsent";
 
 function LangLayout() {
   const { lang } = useParams();
+  const location = useLocation();
   const currentLang = lang === "hr" ? "hr" : "en";
 
   useEffect(() => {
@@ -19,10 +27,15 @@ function LangLayout() {
     document.documentElement.lang = currentLang;
 
     const isHr = currentLang === "hr";
+    const isResume = location.pathname.endsWith("/resume");
 
-    const pageTitle = isHr
-      ? "Mateo Rumac | Frontend i Web Developer"
-      : "Mateo Rumac | Frontend & Web Developer";
+    const pageTitle = isResume
+      ? isHr
+        ? "Mateo Rumac | Životopis"
+        : "Mateo Rumac | Resume"
+      : isHr
+      ? "Mateo Rumac | Full Stack Developer i Digitalna Rješenja"
+      : "Mateo Rumac | Full Stack Developer & Digital Solutions";
 
     document.title = pageTitle;
 
@@ -84,7 +97,7 @@ function LangLayout() {
     if (twitterTitle) {
       twitterTitle.setAttribute("content", pageTitle);
     }
-  }, [currentLang]);
+  }, [currentLang, location.pathname]);
 
   return (
     <>
