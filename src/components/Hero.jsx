@@ -10,11 +10,11 @@ export default function Hero() {
   const phrases = useMemo(
     () => [
       t('console.log("Hello!");'),
-      t('document.write("You’ve arrived.");'),
-      t("<p>I’m Mateo, I build cool stuff</p>"),
-      t("<div>on the internet.</div>"),
-      t('alert("Let’s build");'),
-      t("<span>something cool</span>"),
+      t("document.write(\"I'm Mateo.\");"),
+      t("<p>I build websites, apps</p>"),
+      t("<div>and AI automations.</div>"),
+      t('alert("full-stack, end to end");'),
+      t("<span>let's build something</span>"),
       t("// together."),
     ],
 
@@ -102,7 +102,7 @@ export default function Hero() {
         </h1>
 
         <p className="hero__subtitle">
-          {t("Welcome to my portfolio site. I build cool stuff for the web.")}
+          {t("I build websites, web apps, and AI automations, basically whatever needs building.")}
         </p>
 
         <div className="hero__cta">

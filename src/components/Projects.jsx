@@ -211,13 +211,11 @@ export default function Projects() {
         </h2>
 
         <p className="work__note" data-reveal="fade-up" data-delay="100">
-          {t(
-            "Here are some of the projects I designed and built end-to-end."
-          )}
+          {t("Here are some of the projects I've designed and built.")}
         </p>
         <p className="work__disclaimer" data-reveal="fade-up" data-delay="150">
           {t(
-            "These projects were created during my full-time role at D&A Smart Solutions."
+            "I made these during my full-time role at D&A Smart Solutions."
           )}
         </p>
 

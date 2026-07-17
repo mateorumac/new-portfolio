@@ -53,19 +53,19 @@ export default function About() {
           <article className="about__card" data-reveal="slide-right">
             <p className="about__lead">
               {t(
-                "Hi 👋 I’m Mateo Rumac, a frontend developer focused on building fast, accessible and thoughtfully designed web experiences. I enjoy turning ideas into clean, responsive interfaces that feel intuitive and effortless to use."
+                "Hi 👋 I'm Mateo Rumac, a full-stack developer who builds websites, web apps, and AI-powered automations. I like turning an idea into something people can actually click around in, fast, and without the confusing parts."
               )}
             </p>
 
             <p>
               {t(
-                "Most of my work is in React and modern frontend tooling, with an emphasis on smooth UX, strong performance and maintainable UI architecture. When a project needs it, I also work across the stack, including custom APIs, Stripe integrations and deployments, but my main strength and passion remain on the frontend."
+                "Most of my work happens in React and Astro on the frontend, PHP and custom APIs on the backend, and automations wherever they save someone time, think booking systems, internal dashboards, that kind of thing. If it needs to work in production, not just in a demo, that's the part I actually enjoy."
               )}
             </p>
 
             <p>
               {t(
-                "Outside of coding, you will usually find me at the gym, spending time with friends or watching football. I am always learning, improving and exploring new technologies."
+                "Outside of coding, you'll usually find me at the gym, hanging out with friends, or watching football. Lately I've been spending a lot of that curiosity on AI tooling and automation."
               )}
             </p>
           </article>

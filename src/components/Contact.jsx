@@ -136,7 +136,7 @@ export default function Contact() {
             </p>
             <p className="contact__copy">
               {t(
-                "I’m open to new opportunities, collaborations and interesting ideas. Reach out through the form or directly via email or LinkedIn. I reply as soon as I can. My email is"
+                "I'm always up for new opportunities and interesting ideas. Reach out through the form, or directly via email or LinkedIn, I reply as soon as I can. My email is"
               )}{" "}
               <a href="mailto:mateo.rumac@gmail.com">mateo.rumac@gmail.com</a>.
             </p>
@@ -167,7 +167,7 @@ export default function Contact() {
             </div>
 
             <p className="contact__note">
-              {t("Based in Croatia • Remote friendly")}
+              {t("Based in Croatia • Open to remote work")}
             </p>
           </div>
 

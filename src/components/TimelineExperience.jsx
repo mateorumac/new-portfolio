@@ -203,7 +203,7 @@ export default function TimelineExperience() {
 
                 <p className="tl__lead">
                   {t(
-                    "Faculty of Informatics. Foundations of web development and programming principles with focus on clean structure and problem-solving."
+                    "Faculty of Informatics. Learned the fundamentals of web development and programming here, from clean code structure to actually solving problems instead of just memorizing theory."
                   )}
                 </p>
 
@@ -257,7 +257,7 @@ export default function TimelineExperience() {
 
                 <p className="tl__lead">
                   {t(
-                    "End-to-end design, development and deployment of high-performance, responsive web applications with a strong focus on modern UI/UX, accessibility and multilingual experiences."
+                    "I design, build, and deploy our web applications, with an emphasis on accessible, multilingual UI/UX that actually holds up for real users."
                   )}
                 </p>
 
@@ -265,38 +265,38 @@ export default function TimelineExperience() {
                   <ul className="tl__bullets">
                     <li>
                       {t(
-                        "Custom React, Vite and Next.js frontends with fast, frictionless UX and technical SEO."
+                        "Custom frontends in React, Vite, and Astro, optimized for speed and technical SEO."
                       )}
                     </li>
                     <li>
                       {t(
-                        "Robust PHP backends with scalable custom APIs, dynamic reservation logic and Stripe integrations with 3D Secure and manual capture."
+                        "PHP backends with custom APIs, dynamic reservation logic, and Stripe integrations supporting 3D Secure and manual capture."
                       )}
                     </li>
                     <li>
                       {t(
-                        "DevOps flow with cPanel deployments, Bitbucket Git repos and SSH for server tasks (Composer, Stripe and dependencies). Testing with Postman."
+                        "Deployments through cPanel and Bitbucket, with SSH for server tasks like Composer and dependency updates, and Postman for API testing."
                       )}
                     </li>
                     <li>
                       {t(
-                        "Interactive dashboards in Chart.js visualizing real-time KPIs like occupancy, revenue and OTA channels."
+                        "Interactive Chart.js dashboards for real-time KPIs like occupancy, revenue, and OTA channels."
                       )}
                     </li>
                     <li>
                       {t(
-                        "Internal Admin Dashboard that automates daily check-out and next-day arrivals, removing manual errors and saving operational time."
+                        "An internal admin dashboard that automates daily check-outs and next-day arrivals, cutting manual errors and saving the team time."
                       )}
                     </li>
                     <li>
                       {t(
-                        "Brand visuals, presentations and social content, plus analytics tracking and GDPR compliance with cookie consent systems."
+                        "Brand visuals, presentations, and social content, plus analytics tracking and GDPR-compliant cookie consent."
                       )}
                     </li>
                   </ul>
                   <ul className="tl__tags">
                     <li>React</li>
-                    <li>Next.js</li>
+                    <li>Astro</li>
                     <li>Vite</li>
                     <li>PHP</li>
                     <li>Stripe</li>
