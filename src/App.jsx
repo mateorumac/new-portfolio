@@ -97,6 +97,11 @@ function LangLayout() {
     if (twitterTitle) {
       twitterTitle.setAttribute("content", pageTitle);
     }
+
+    const twitterDesc = document.querySelector('meta[name="twitter:description"]');
+    if (twitterDesc && metaDesc) {
+      twitterDesc.setAttribute("content", metaDesc.content);
+    }
   }, [currentLang, location.pathname]);
 
   return (

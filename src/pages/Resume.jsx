@@ -21,6 +21,8 @@ export default function Resume() {
   return (
     <section className="resume" aria-label={t("Resume")}>
       <div className="resume__container">
+        <h1 className="visually-hidden">{t("Resume")}</h1>
+
         <div className="resume__controls">
           <Link to={`/${currentLang}`} className="resume__btn ghost">
             <FiArrowLeft />

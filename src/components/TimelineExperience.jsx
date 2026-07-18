@@ -214,7 +214,7 @@ export default function TimelineExperience() {
                       className="tl__link"
                       href="https://repozitorij.unipu.hr/islandora/object/unipu%3A9707"
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noreferrer noopener"
                     >
                       <em>
                         {t(
