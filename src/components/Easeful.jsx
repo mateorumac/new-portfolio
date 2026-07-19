@@ -46,7 +46,7 @@ export default function Easeful() {
                 className="easeful__logo"
               />
               <span className="easeful__eyebrow">
-                {t("WHAT I AM BUILDING NOW")}
+                {t("FINANCIAL DECISION APP")}
               </span>
             </div>
 

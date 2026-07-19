@@ -68,14 +68,10 @@
   text-align: left;
 }
 .work__note {
-  margin: 0 0 0.35rem;
+  margin: 0 0 clamp(1.2rem, 3vw, 1.8rem);
+  max-width: 34rem;
   color: color-mix(in oklab, var(--text) 92%, white 8%);
   font-size: clamp(0.98rem, 0.86rem + 0.45vw, 1.12rem);
-}
-.work__disclaimer {
-  margin: 0 0 clamp(1.2rem, 3vw, 1.8rem);
-  font-size: 0.95rem;
-  color: var(--muted);
 }
 
 .work__grid {
@@ -325,12 +321,6 @@
 
   .work__note {
     font-size: 1.35rem;
-    margin-bottom: 0.6rem;
-    max-width: 46rem;
-  }
-
-  .work__disclaimer {
-    font-size: 1.2rem;
     margin-bottom: 2.4rem;
     max-width: 46rem;
   }
@@ -382,8 +372,7 @@
   .work__bg::before {
     width: clamp(200px, 32vw, 330px);
   }
-  .work__note,
-  .work__disclaimer {
+  .work__note {
     max-width: 39rem !important;
     white-space: normal;
     overflow-wrap: break-word;
@@ -406,11 +395,6 @@
 
   .work__note {
     font-size: 1.15rem;
-    max-width: 46rem;
-  }
-
-  .work__disclaimer {
-    font-size: 1.05rem;
     margin-bottom: 2.2rem;
     max-width: 46rem;
   }
@@ -445,8 +429,7 @@
     font-size: 1.05rem;
   }
 
-  .work__note,
-  .work__disclaimer {
+  .work__note {
     max-width: 33rem !important;
   }
   .work__bg::before {
@@ -475,10 +458,6 @@
 
   .work__note {
     font-size: 1.05rem;
-  }
-
-  .work__disclaimer {
-    font-size: 0.95rem;
     margin-bottom: 2rem;
   }
 
@@ -516,8 +495,7 @@
     width: clamp(150px, 32vw, 260px);
   }
 
-  .work__note,
-  .work__disclaimer {
+  .work__note {
     max-width: 15rem !important;
   }
 }
@@ -541,10 +519,6 @@
 
   .work__note {
     font-size: 0.98rem;
-  }
-
-  .work__disclaimer {
-    font-size: 0.9rem;
     margin-bottom: 1.8rem;
   }
 
@@ -574,15 +548,13 @@
     font-size: 0.95rem;
   }
 
-  .work__note,
-  .work__disclaimer {
+  .work__note {
     max-width: 14rem !important;
   }
 }
 
 @media (max-width: 400px) and (min-height: 780px) {
-  .work__note,
-  .work__disclaimer {
+  .work__note {
     max-width: 17rem !important;
   }
 }
