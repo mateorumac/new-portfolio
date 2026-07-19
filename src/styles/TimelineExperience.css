@@ -156,6 +156,41 @@
   transition: opacity .55s ease-out, transform .55s cubic-bezier(.2,.7,.25,1);
 }
 
+.tl__card::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(120deg, var(--accent-hot), var(--accent-2), var(--accent), var(--accent-hot));
+  background-size: 300% 300%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity .4s ease;
+  animation: tlBorderMove 5s linear infinite;
+  animation-play-state: paused;
+  pointer-events: none;
+}
+
+.tl__card:hover::after,
+.tl__card:focus-within::after{
+  opacity: 1;
+  animation-play-state: running;
+}
+
+@keyframes tlBorderMove{
+  0%{ background-position: 0% 50%; }
+  100%{ background-position: 300% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .tl__card::after{
+    animation: none;
+  }
+}
+
 .tl__item.is-visible .tl__card{
   opacity: 1;
   transform: none;
@@ -241,15 +276,6 @@
 .tl__more{
   display:grid;
   gap:.6rem;
-  overflow:hidden;
-  max-height:0;
-  opacity:0;
-  transition: max-height .9s ease, opacity .6s ease;
-}
-.tl__card:hover .tl__more,
-.tl__card:focus-within .tl__more{
-  max-height:1000px;
-  opacity:1;
 }
 
 .tl__desc{
@@ -265,18 +291,25 @@
 }
 
 .tl__tags{
-  display:inline-flex;
-  gap:.4rem;
+  display:flex;
+  gap:.45rem .5rem;
   flex-wrap:wrap;
   margin:.2rem 0 0;
   padding:0;
   list-style:none;
 }
 .tl__tags li{
-  border:1px solid var(--border);
-  background: color-mix(in oklab, var(--panel) 85%, black 15%);
-  padding:.22rem .55rem;
-  font-size:.9rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.34rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--accent) 35%, var(--border) 65%);
+  background: color-mix(in oklab, var(--accent) 12%, var(--panel) 88%);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: color-mix(in oklab, var(--text) 88%, var(--accent) 12%);
+  white-space: nowrap;
 }
 
 .tl__link{
@@ -296,10 +329,6 @@
 @media (prefers-reduced-motion: no-preference){
   .tl[data-reveal]{opacity:0;transition:opacity .9s ease;transition-delay:.2s}
   .tl.is-visible{opacity:1}
-}
-
-:root[data-theme="light"] .tl__tags li{
-  background: color-mix(in oklab, var(--panel) 88%, white 10%);
 }
 
 /*RESPONZIVNOST*/
