@@ -167,12 +167,6 @@
   margin: 0;
 }
 
-.work__madeat {
-  margin: 0 0 0.6rem;
-  font-size: 0.9rem;
-  color: var(--muted);
-}
-
 /* ----- DESKTOP: TAGS SLIDE DOWN FROM THE TOP, STAGGERED AFTER THE INFO REVEAL ----- */
 .work__tags-overlay {
   position: absolute;

@@ -240,12 +240,25 @@
   z-index: 0;
 }
 
-.easeful__img {
+/* Sizing lives on the link, not the image, so the clickable area is the
+   mockup itself rather than the full column width. */
+.easeful__shot {
   position: relative;
   z-index: 1;
   display: block;
   width: 100%;
   max-width: 340px;
+  border-radius: 0.5rem;
+}
+
+.easeful__shot:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 6px;
+}
+
+.easeful__img {
+  display: block;
+  width: 100%;
   height: auto;
   transform: perspective(1000px) rotateY(-3deg) rotateX(1.5deg);
   transition: transform 0.6s cubic-bezier(0.22, 0.8, 0.33, 1);
@@ -344,7 +357,7 @@
     font-size: 1.05rem;
   }
 
-  .easeful__img {
+  .easeful__shot {
     max-width: 300px;
   }
 }
@@ -363,10 +376,13 @@
     gap: clamp(2.4rem, 5vw, 3.2rem);
   }
 
-  .easeful__img {
-    transform: none;
+  .easeful__shot {
     max-width: 320px;
     margin-inline: auto;
+  }
+
+  .easeful__img {
+    transform: none;
   }
 
   .easeful__visual:hover .easeful__img {
@@ -409,7 +425,7 @@
     justify-content: center;
   }
 
-  .easeful__img {
+  .easeful__shot {
     max-width: 280px;
   }
 }
@@ -423,7 +439,7 @@
     font-size: 2.4rem;
   }
 
-  .easeful__img {
+  .easeful__shot {
     max-width: 260px;
   }
 }

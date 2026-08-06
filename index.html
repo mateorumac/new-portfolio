@@ -74,7 +74,7 @@
     <!-- Manifest -->
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- JSON-LD: Person + Website -->
+    <!-- JSON-LD: Person + Website + projects -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -114,7 +114,194 @@
             "name": "Mateo Rumac • Portfolio",
             "publisher": { "@id": "https://mateorumac.com#person" },
             "inLanguage": ["en", "hr"],
-            "description": "Portfolio website of frontend developer Mateo Rumac, showcasing selected projects, experience and contact. Remote-friendly."
+            "description": "Portfolio website of frontend developer Mateo Rumac, showcasing selected projects, experience and contact. Remote-friendly.",
+            "hasPart": [
+              { "@id": "https://mateorumac.com/game/#nightfall" },
+              { "@id": "https://mateorumac.com/tools/#devtools" }
+            ]
+          },
+
+          {
+            "@type": "VideoGame",
+            "@id": "https://mateorumac.com/game/#nightfall",
+            "name": "Nightfall",
+            "url": "https://mateorumac.com/game/",
+            "description": "A browser-based arcade flight game built solo with Three.js and vanilla JavaScript. Pilot a jet through an endless procedurally-generated landscape at dusk, threading glowing rings for combo multipliers while dodging hazards and terrain.",
+            "author": { "@id": "https://mateorumac.com#person" },
+            "applicationCategory": "GameApplication",
+            "gamePlatform": "Web browser",
+            "operatingSystem": "Any (web browser)",
+            "playMode": "SinglePlayer",
+            "genre": ["Arcade", "Flight"],
+            "inLanguage": "en",
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "EUR",
+              "availability": "https://schema.org/InStock"
+            }
+          },
+
+          {
+            "@type": "WebApplication",
+            "@id": "https://mateorumac.com/tools/#devtools",
+            "name": "dev-tools",
+            "url": "https://mateorumac.com/tools/",
+            "description": "A free set of browser-based utilities for web work: image conversion, favicon and Open Graph generation, a contrast checker, a launch checklist and an AI prompt generator. Everything runs locally in the tab, with no sign-up and no uploads.",
+            "author": { "@id": "https://mateorumac.com#person" },
+            "applicationCategory": "DeveloperApplication",
+            "browserRequirements": "Requires JavaScript",
+            "operatingSystem": "Any (web browser)",
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "EUR",
+              "availability": "https://schema.org/InStock"
+            }
+          },
+
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://tryeaseful.com/#easeful",
+            "name": "Easeful",
+            "url": "https://tryeaseful.com/en",
+            "description": "A financial decision app that translates expenses into time and impact, helping users understand how spending affects their life runway rather than just their account balance.",
+            "author": { "@id": "https://mateorumac.com#person" },
+            "applicationCategory": "FinanceApplication",
+            "operatingSystem": "Any (web browser)"
+          },
+
+          {
+            "@type": "ItemList",
+            "@id": "https://mateorumac.com#selected-work",
+            "name": "Selected work",
+            "description": "Client projects designed and built end to end by Mateo Rumac during his full-time role at D&A Smart Solutions.",
+            "numberOfItems": 10,
+            "itemListOrder": "https://schema.org/ItemListUnordered",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                  "@type": "WebSite",
+                  "name": "D&A Property Management",
+                  "url": "https://danda.hr",
+                  "description": "A direct booking platform for a property management company, covering search through to secure reservation in four languages, with a landlord profit calculator and separate admin and owner dashboards.",
+                  "author": { "@id": "https://mateorumac.com#person" },
+                  "inLanguage": ["hr", "en", "de", "it"]
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                  "@type": "WebSite",
+                  "name": "D&A Smart Solutions",
+                  "url": "https://dandaweb.com",
+                  "description": "One-page site for the company's web development branch: a parallax hero with a device mockup leading into social proof, a portfolio carousel, pricing and a contact form.",
+                  "author": { "@id": "https://mateorumac.com#person" },
+                  "inLanguage": ["en", "hr"]
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                  "@type": "WebSite",
+                  "name": "Apposta Lei",
+                  "url": "https://appostalei.com",
+                  "description": "Multilingual site for a hotel cosmetics and equipment distributor, organised around brand and product hubs with galleries, a showroom page and SEO-structured content.",
+                  "author": { "@id": "https://mateorumac.com#person" },
+                  "inLanguage": ["hr", "en", "sl"]
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "item": {
+                  "@type": "WebSite",
+                  "name": "Gran Caffe Monaco",
+                  "url": "https://grancaffe.mc",
+                  "description": "Restaurant website for a venue in Monaco with a black and gold, photo-first layout across about, gallery, menu, events and contact pages.",
+                  "author": { "@id": "https://mateorumac.com#person" },
+                  "inLanguage": ["en", "fr", "it"]
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 5,
+                "item": {
+                  "@type": "WebSite",
+                  "name": "Meštri od Broda",
+                  "url": "https://mestriodbroda.hr",
+                  "description": "Site for a Trogir-based superyacht painting and refit company, with a project gallery, staggered scroll animations, verified Google reviews and a quote request form.",
+                  "author": { "@id": "https://mateorumac.com#person" },
+                  "inLanguage": ["hr", "en"]
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 6,
+                "item": {
+                  "@type": "WebSite",
+                  "name": "Rent a Boat Zadar",
+                  "url": "https://rentaboatzadareu.com",
+                  "description": "Boat rental site for a private charter business in Zadar, with fleet and destination pages, galleries, pricing tables and a custom inquiry form with a date picker.",
+                  "author": { "@id": "https://mateorumac.com#person" },
+                  "inLanguage": ["hr", "en", "de", "fr"]
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 7,
+                "item": {
+                  "@type": "WebSite",
+                  "name": "Hotel Natura",
+                  "url": "https://hotel-natura.com",
+                  "description": "Hotel website with an animated hero and amenities gallery, plus a custom direct booking system with live availability and rates that lets the hotel skip OTA commissions.",
+                  "author": { "@id": "https://mateorumac.com#person" },
+                  "inLanguage": ["hr", "en", "it", "de"]
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 8,
+                "item": {
+                  "@type": "WebSite",
+                  "name": "LunaSky Bay",
+                  "url": "https://lunasky-bay.com",
+                  "description": "Rental site for seaside mobile homes with a video hero, availability calendar, galleries, amenities, guest reviews and a quick enquiry form.",
+                  "author": { "@id": "https://mateorumac.com#person" },
+                  "inLanguage": ["hr", "en", "de", "it"]
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 9,
+                "item": {
+                  "@type": "WebSite",
+                  "name": "Taxi Kamidi",
+                  "url": "https://taxi-kamidi.com/en",
+                  "description": "Website for a taxi company with smooth-scroll animations, covering about, services and car fleet sections plus a contact form.",
+                  "author": { "@id": "https://mateorumac.com#person" },
+                  "inLanguage": ["hr", "en", "de", "it"]
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 10,
+                "item": {
+                  "@type": "WebSite",
+                  "name": "Mind Well",
+                  "url": "https://mindwell.hr",
+                  "description": "Corporate wellness website with a Markdown-based blog, structured service and pricing pages, SEO optimisation and an integrated cookie consent banner.",
+                  "author": { "@id": "https://mateorumac.com#person" },
+                  "inLanguage": ["hr", "en"]
+                }
+              }
+            ]
           }
         ]
       }

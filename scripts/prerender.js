@@ -41,8 +41,13 @@ async function updateSitemapLastmod() {
   const updated = blocks
     .map((block) => {
       if (!block.includes("<loc>")) return block;
-      const isResume = block.includes("/resume<");
-      const date = isResume ? resumeDate : homeDate;
+      const loc = block.match(/<loc>(.*?)<\/loc>/)?.[1] ?? "";
+      const route = loc.replace(/^https?:\/\/[^/]+/, "").replace(/\/$/, "");
+      // Only the routes this build renders. Sub-apps deployed elsewhere
+      // (/game/, /tools/) also live in this sitemap, and their lastmod has
+      // nothing to do with a commit in this repo.
+      if (!routes.includes(route)) return block;
+      const date = route.endsWith("/resume") ? resumeDate : homeDate;
       return block.replace(/<lastmod>.*?<\/lastmod>/, `<lastmod>${date}</lastmod>`);
     })
     .join("");

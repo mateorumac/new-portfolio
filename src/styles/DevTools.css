@@ -87,14 +87,36 @@
   z-index: 0;
 }
 
-.devtools__img {
+/* Sizing lives on the link, not the image, so the clickable area is the
+   mockup itself rather than the full column width. */
+.devtools__shot {
   position: relative;
   z-index: 1;
   display: block;
   width: 100%;
   max-width: 720px;
+  border-radius: 0.5rem;
+}
+
+.devtools__shot:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 6px;
+}
+
+.devtools__img {
+  display: block;
+  width: 100%;
   height: auto;
   filter: drop-shadow(0 24px 44px rgba(0, 0, 0, 0.45));
+  /* Same resting tilt as the Nightfall mockups, straightening on hover. */
+  transform: perspective(1200px) rotateY(4deg) rotateX(2deg);
+  transition: transform 0.6s cubic-bezier(0.22, 0.8, 0.33, 1),
+    filter 0.6s cubic-bezier(0.22, 0.8, 0.33, 1);
+}
+
+.devtools__visual:hover .devtools__img {
+  transform: perspective(1200px) rotateY(0deg) rotateX(0deg);
+  filter: drop-shadow(0 28px 52px rgba(0, 0, 0, 0.55));
 }
 
 /* ----- RIGHT: CONTENT ----- */
@@ -303,7 +325,7 @@
     font-size: 1.05rem;
   }
 
-  .devtools__img {
+  .devtools__shot {
     max-width: 600px;
   }
 }
@@ -326,9 +348,15 @@
     order: -1;
   }
 
-  .devtools__img {
+  .devtools__shot {
     max-width: 100%;
     margin-inline: auto;
+  }
+
+  .devtools__img,
+  .devtools__visual:hover .devtools__img {
+    transform: none;
+    filter: drop-shadow(0 0.9rem 1.6rem rgba(0, 0, 0, 0.45));
   }
 
   .devtools__heading {

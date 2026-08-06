@@ -39,13 +39,21 @@ export default function DevTools() {
           {/* LEFT: OG image */}
           <div className="devtools__visual" data-reveal data-delay="0">
             <div className="devtools__glow-under" aria-hidden="true" />
-            <img
-              src={devToolsImage}
-              alt="dev-tools shown on a laptop screen"
-              className="devtools__img"
-              loading="lazy"
-              decoding="async"
-            />
+            <a
+              href="/tools/"
+              className="devtools__shot"
+              target="_blank"
+              rel="noopener"
+              title="dev-tools by Mateo Rumac"
+            >
+              <img
+                src={devToolsImage}
+                alt="dev-tools shown on a laptop screen"
+                className="devtools__img"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
           </div>
 
           {/* RIGHT: content */}
@@ -75,6 +83,8 @@ export default function DevTools() {
                 <a
                   href="/tools/"
                   className="devtools__inline-link"
+                  target="_blank"
+                  rel="noopener"
                   title="dev-tools by Mateo Rumac"
                 >
                   dev-tools
@@ -94,6 +104,8 @@ export default function DevTools() {
               <a
                 href="/tools/"
                 className="btn primary"
+                target="_blank"
+                rel="noopener"
                 title="dev-tools by Mateo Rumac"
               >
                 {t("Open dev-tools")}

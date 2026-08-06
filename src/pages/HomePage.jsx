@@ -5,6 +5,7 @@ import Contact from '../components/Contact';
 import TimelineExperience from "../components/TimelineExperience";
 import DevTools from "../components/DevTools";
 import Easeful from "../components/Easeful";
+import Nightfall from "../components/Nightfall";
 
 export default function HomePage() {
   return (
@@ -14,6 +15,7 @@ export default function HomePage() {
       <TimelineExperience />
       <DevTools />
       <Easeful />
+      <Nightfall />
       <Projects />
       <Contact />
     </main>

@@ -163,7 +163,11 @@
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+  /* color/border-color at 0.3s matches .navlink, so the ghost variant recolors
+     in step with the other nav items when the header crosses into its scrolled
+     state — and it makes the hover tint fade instead of snap. */
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease,
+    color 0.3s ease, border-color 0.3s ease;
 }
 
 .devtools-btn svg {
@@ -182,6 +186,50 @@
 .devtools-btn:active {
   transform: translateY(0);
   filter: brightness(0.96);
+}
+
+/* Secondary variant. Two filled pills side by side read as equal weight and
+   cancel each other out — Nightfall already has its own section CTA, so it
+   sits back here and lets dev-tools hold the loud slot. */
+.devtools-btn--ghost {
+  background: transparent;
+  color: var(--text);
+  border: 0.0625rem solid color-mix(in oklab, var(--text) 28%, transparent);
+}
+
+.devtools-btn--ghost:hover {
+  filter: none;
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: none;
+}
+
+.devtools-btn--ghost:active {
+  filter: none;
+}
+
+/* Unscrolled, the header sits over the hero's light band, so this button
+   follows .navlinks to dark ink rather than theme text — the icon rides along
+   on currentColor. Border is left alone. Scoped to .nav__right, which is
+   display:none on mobile, so the drawer keeps var(--text) on its dark panel. */
+.navbar:not(.navbar--scrolled) .nav__right .devtools-btn--ghost {
+  color: #10131a;
+  border-color: color-mix(in oklab, #10131a 32%, transparent);
+}
+
+/* The resume header runs light-on-dark instead, same as its navlinks. */
+.navbar--resume:not(.navbar--scrolled) .nav__right .devtools-btn--ghost {
+  color: #fff;
+  border-color: color-mix(in oklab, #fff 34%, transparent);
+}
+
+/* These state rules outrank .devtools-btn--ghost:hover, so hand the accent
+   back on hover — the effect stays identical whether or not the page is
+   scrolled. */
+.navbar:not(.navbar--scrolled) .nav__right .devtools-btn--ghost:hover,
+.navbar--resume:not(.navbar--scrolled) .nav__right .devtools-btn--ghost:hover {
+  color: var(--accent);
+  border-color: var(--accent);
 }
 
 .theme-toggle::before {
@@ -304,7 +352,7 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  gap: 2.6rem;
+  gap: 1.3rem;
 }
 
 .nav-drawer__nav {
@@ -344,6 +392,25 @@
 
 :root[data-theme="light"] .nav-drawer__footer {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Label + button pair. These classes exist only inside the drawer markup, so
+   the desktop header is untouched. */
+.nav-drawer__promo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.55rem;
+  width: 100%;
+}
+
+.nav-drawer__promo-label {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: var(--brand);
 }
 
 .nav-drawer__devtools {

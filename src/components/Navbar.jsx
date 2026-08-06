@@ -1,8 +1,7 @@
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { FiTool } from "react-icons/fi";
-import i18n from "../i18n";
+import { FiTool, FiPlay } from "react-icons/fi";
 import "../styles/Navbar.css";
 
 import logo from "../assets/logo.webp";
@@ -160,11 +159,25 @@ export default function Navbar() {
             <a
               className="devtools-btn"
               href="/tools/"
+              target="_blank"
+              rel="noopener"
               aria-label={t("Open DevTools")}
               title={t("Open DevTools")}
             >
               <FiTool aria-hidden="true" />
               <span>{t("DevTools")}</span>
+            </a>
+
+            <a
+              className="devtools-btn devtools-btn--ghost"
+              href="/game/"
+              target="_blank"
+              rel="noopener"
+              aria-label={t("Play Nightfall")}
+              title={t("Play Nightfall")}
+            >
+              <FiPlay aria-hidden="true" />
+              <span>{t("Nightfall")}</span>
             </a>
 
             <button
@@ -260,16 +273,43 @@ export default function Navbar() {
                 </Link>
               </nav>
 
-              <a
-                className="devtools-btn nav-drawer__devtools"
-                href="/tools/"
-                aria-label={t("Open DevTools")}
-                title={t("Open DevTools")}
-                onClick={closeMenu}
-              >
-                <FiTool aria-hidden="true" />
-                <span>{t("DevTools")}</span>
-              </a>
+              {/* Drawer only — the desktop header keeps these two as bare
+                  buttons. There is room here to say what they are. */}
+              <div className="nav-drawer__promo">
+                <span className="nav-drawer__promo-label">
+                  {t("FREE TOOLS FOR DEVELOPERS")}
+                </span>
+                <a
+                  className="devtools-btn nav-drawer__devtools"
+                  href="/tools/"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label={t("Open DevTools")}
+                  title={t("Open DevTools")}
+                  onClick={closeMenu}
+                >
+                  <FiTool aria-hidden="true" />
+                  <span>{t("DevTools")}</span>
+                </a>
+              </div>
+
+              <div className="nav-drawer__promo">
+                <span className="nav-drawer__promo-label">
+                  {t("FREE BROWSER GAME")}
+                </span>
+                <a
+                  className="devtools-btn devtools-btn--ghost nav-drawer__devtools"
+                  href="/game/"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label={t("Play Nightfall")}
+                  title={t("Play Nightfall")}
+                  onClick={closeMenu}
+                >
+                  <FiPlay aria-hidden="true" />
+                  <span>{t("Nightfall")}</span>
+                </a>
+              </div>
             </div>
 
             <div className="nav-drawer__footer">

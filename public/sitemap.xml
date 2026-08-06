@@ -44,4 +44,13 @@
     <changefreq>monthly</changefreq>
   </url>
 
+  <!-- Deployed separately from this app, so prerender.js leaves its lastmod
+       alone; update by hand when the game ships a new version. -->
+  <url>
+    <loc>https://mateorumac.com/game/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
 </urlset>

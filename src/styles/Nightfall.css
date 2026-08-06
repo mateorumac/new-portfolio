@@ -1,0 +1,512 @@
+/* =========================================================
+   NIGHTFALL — Featured browser game section
+   Sits between Easeful and Selected Work
+   ========================================================= */
+
+.nightfall {
+  position: relative;
+  padding-block: clamp(5rem, 11vw, 9rem);
+  isolation: isolate;
+  overflow: hidden;
+  color: var(--text);
+}
+
+/* ----- BACKGROUND GLOW BLOBS ----- */
+.nightfall::before,
+.nightfall::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(72px);
+  opacity: 0.13;
+  animation: nightfallBg 24s linear infinite;
+}
+
+.nightfall::before {
+  inset: auto auto -10% -6%;
+  width: 42vw;
+  height: 42vw;
+  max-width: 620px;
+  max-height: 620px;
+  background:
+    radial-gradient(58% 58% at 35% 35%, var(--accent-2) 0%, transparent 60%),
+    radial-gradient(58% 58% at 68% 68%, var(--accent-hot) 0%, transparent 60%);
+}
+
+.nightfall::after {
+  inset: -10% -8% auto auto;
+  width: 38vw;
+  height: 38vw;
+  max-width: 540px;
+  max-height: 540px;
+  background:
+    radial-gradient(56% 56% at 60% 35%, var(--accent) 0%, transparent 60%),
+    radial-gradient(56% 56% at 30% 70%, var(--accent-2) 0%, transparent 60%);
+}
+
+@keyframes nightfallBg {
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50%  { transform: translate3d(-2%, 2%, 0) rotate(-8deg); }
+  100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+}
+
+/* ----- CONTAINER ----- */
+.nightfall__container {
+  position: relative;
+  z-index: 1;
+  width: min(1200px, 92%);
+  margin-inline: auto;
+}
+
+/* ----- TWO-COLUMN LAYOUT ----- */
+.nightfall__inner {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: clamp(3rem, 6vw, 5.5rem);
+  /* start (not center): a sticky item needs the full grid-row height as its
+     range of motion — centering would box it to its own content height and
+     it would never get a chance to stick once the "Under the hood" details
+     expand and the content column grows taller. */
+  align-items: start;
+}
+
+/* ----- LEFT: CONTENT ----- */
+.nightfall__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.nightfall__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: clamp(1rem, 2.2vw, 1.35rem);
+}
+
+.nightfall__logo {
+  width: auto;
+  height: 24px;
+  object-fit: contain;
+  flex-shrink: 0;
+  border-radius: 6px;
+  /* Source art is black — knock it to pure white so it reads on the dark
+     section background. Reverted in light mode below. */
+  filter: brightness(0) invert(1);
+}
+
+.nightfall__eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brand);
+}
+
+.nightfall__heading {
+  /* padding-bottom gives descenders (g, y) room inside the background-clip
+     paint area — line-height:1 alone crops them since the gradient only
+     paints within the line box. margin-bottom is trimmed by the same
+     amount so the description below doesn't shift down. */
+  margin: 0 0 calc(clamp(1rem, 2.2vw, 1.4rem) - 0.14em);
+  padding-bottom: 0.14em;
+  font-weight: 800;
+  font-size: clamp(3rem, 7.5vw, 5.2rem);
+  letter-spacing: 0.01em;
+  line-height: 1;
+  background: linear-gradient(120deg, var(--accent-2) 0%, var(--accent-hot) 55%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.nightfall__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: clamp(1.6rem, 3.4vw, 2.2rem);
+}
+
+.nightfall__body p {
+  margin: 0;
+  font-size: clamp(0.97rem, 0.88rem + 0.35vw, 1.07rem);
+  line-height: 1.74;
+  color: color-mix(in oklab, var(--text) 82%, transparent 18%);
+}
+
+/* ----- UNDER THE HOOD: collapsible technical highlights ----- */
+.nightfall__highlights {
+  margin-bottom: clamp(1.8rem, 4vw, 2.6rem);
+  border-top: 1px solid var(--border);
+  padding-top: 0.9rem;
+}
+
+.nightfall__highlights-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  cursor: pointer;
+  list-style: none;
+  padding: 0.1rem 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--text) 78%, transparent 22%);
+  transition: color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nightfall__highlights-summary::-webkit-details-marker {
+  display: none;
+}
+.nightfall__highlights-summary::marker {
+  content: "";
+}
+
+.nightfall__highlights-summary:hover,
+.nightfall__highlights-summary:focus-visible {
+  color: var(--accent);
+}
+
+.nightfall__highlights-summary:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 3px;
+}
+
+.nightfall__highlights-chevron {
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.22, 0.8, 0.33, 1);
+}
+
+/* Keyed to data-expanded rather than [open]: during a collapse the element
+   stays open until the animation ends, so [open] would hold the chevron
+   flipped until the very last frame. */
+.nightfall__highlights[data-expanded="true"] .nightfall__highlights-chevron {
+  transform: rotate(180deg);
+}
+
+.nightfall__highlights-panel {
+  overflow: hidden;
+}
+
+.nightfall__bullets {
+  margin: 0.9rem 0 0;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.nightfall__bullets li {
+  font-size: clamp(0.92rem, 0.86rem + 0.25vw, 0.98rem);
+  line-height: 1.62;
+  color: color-mix(in oklab, var(--text) 80%, transparent 20%);
+}
+
+.nightfall__bullets li strong {
+  font-weight: 700;
+  color: color-mix(in oklab, var(--text) 96%, white 4%);
+}
+
+.nightfall__bullets li::marker {
+  color: var(--accent);
+}
+
+/* ----- CTA BUTTON ----- */
+.nightfall__cta {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.nightfall__cta .btn {
+  position: relative;
+  overflow: hidden;
+  padding: 0.78rem 1.1rem;
+  border-radius: 0;
+  font-size: 0.98rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  transition: color 0.25s ease, border-color 0.25s ease;
+  z-index: 0;
+}
+
+.nightfall__cta .btn.primary {
+  background: var(--brand);
+  color: #0c1320;
+  border: 1px solid transparent;
+}
+
+.nightfall__cta .btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-105%);
+  transition: transform 0.35s cubic-bezier(0.22, 0.8, 0.33, 1);
+  z-index: -1;
+}
+
+.nightfall__cta .btn.primary::before {
+  background: linear-gradient(90deg, var(--accent-2), var(--accent));
+}
+
+.nightfall__cta .btn:hover::before,
+.nightfall__cta .btn:focus-visible::before {
+  transform: translateX(0);
+}
+
+.nightfall__cta .btn svg {
+  flex-shrink: 0;
+  transition: transform 0.25s cubic-bezier(0.22, 0.8, 0.33, 1);
+}
+
+.nightfall__cta .btn:hover svg {
+  transform: translateX(3px);
+}
+
+/* ----- RIGHT: GAME SCREENSHOT ----- */
+.nightfall__visual {
+  /* Sticks in place once the "Under the hood" details expand and push the
+     content column taller than the image — keeps the screenshot in view
+     while the extra copy scrolls past instead of leaving it behind.
+     Offset clears the fixed navbar (mirrors its own clamp() height). */
+  position: sticky;
+  top: calc(clamp(4rem, 6vw, 4.75rem) + 1.25rem);
+  align-self: start;
+  display: flex;
+  justify-content: center;
+}
+
+.nightfall__glow-under {
+  position: absolute;
+  inset: 8% -10% -10% -10%;
+  /* Biased right of centre so it pools under the phone rather than under the
+     middle of the laptop. */
+  background: radial-gradient(
+    ellipse 62% 52% at 58% 82%,
+    color-mix(in oklab, var(--accent-2) 26%, transparent) 0%,
+    transparent 70%
+  );
+  filter: blur(32px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Both mockups are transparent cutouts, so the old card treatment (border +
+   overflow:hidden + box-shadow) would draw a rectangle around empty space.
+   Shadows come from drop-shadow() instead, which traces the device silhouette. */
+.nightfall__devices {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  /* Reserve the room the phone hangs into: it sits flush to the right edge
+     and drops below the laptop's base. Without this the overhang would eat
+     into the column gap. */
+  padding-bottom: 8%;
+  transform: perspective(1200px) rotateY(4deg) rotateX(2deg);
+  transition: transform 0.6s cubic-bezier(0.22, 0.8, 0.33, 1);
+}
+
+.nightfall__visual:hover .nightfall__devices {
+  transform: perspective(1200px) rotateY(0deg) rotateX(0deg);
+}
+
+.nightfall__devices:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 6px;
+}
+
+.nightfall__laptop {
+  display: block;
+  /* 88%, not 100% — the remaining 12% is the phone's overhang past the
+     laptop's right edge. */
+  width: 88%;
+  height: auto;
+  filter: drop-shadow(0 1.6rem 2.4rem rgba(0, 0, 0, 0.55));
+  transition: filter 0.6s cubic-bezier(0.22, 0.8, 0.33, 1);
+}
+
+.nightfall__phone {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 25%;
+  height: auto;
+  /* Shadow throws left and down, away from the laptop it rests against. */
+  filter: drop-shadow(-0.9rem 1.4rem 2rem rgba(0, 0, 0, 0.62));
+  transition: transform 0.6s cubic-bezier(0.22, 0.8, 0.33, 1),
+    filter 0.6s cubic-bezier(0.22, 0.8, 0.33, 1);
+}
+
+/* Hover pulls the phone a touch further forward than the laptop, so the two
+   planes separate instead of moving as one flat sheet. */
+.nightfall__visual:hover .nightfall__phone {
+  transform: translate3d(1.5%, -2%, 0) scale(1.03);
+  filter: drop-shadow(-1.1rem 1.7rem 2.6rem rgba(0, 0, 0, 0.7));
+}
+
+.nightfall__visual:hover .nightfall__laptop {
+  filter: drop-shadow(0 1.8rem 3rem rgba(0, 0, 0, 0.62));
+}
+
+/* ----- SCROLL REVEAL ----- */
+@media (prefers-reduced-motion: no-preference) {
+  .nightfall [data-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 0.65s ease,
+      transform 0.65s cubic-bezier(0.2, 0.7, 0.25, 1);
+  }
+
+  .nightfall [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .nightfall [data-delay="80"]  { transition-delay: 0.08s; }
+  .nightfall [data-delay="140"] { transition-delay: 0.14s; }
+  .nightfall [data-delay="200"] { transition-delay: 0.20s; }
+  .nightfall [data-delay="240"] { transition-delay: 0.24s; }
+  .nightfall [data-delay="300"] { transition-delay: 0.30s; }
+
+  /* Screenshot gets a more cinematic entrance: slides in from the left */
+  .nightfall__visual[data-reveal] {
+    opacity: 0;
+    transform: translateX(-48px) translateY(16px);
+    transition:
+      opacity 0.85s ease,
+      transform 0.85s cubic-bezier(0.2, 0.7, 0.25, 1);
+  }
+
+  .nightfall__visual[data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ----- LIGHT MODE ----- */
+:root[data-theme="light"] .nightfall__logo {
+  filter: none;
+}
+
+:root[data-theme="light"] .nightfall__cta .btn.primary:hover {
+  color: #ffffff;
+}
+
+/* ----- RESPONSIVE ----- */
+
+@media (max-width: 1024px) {
+  .nightfall {
+    padding-block: 5.8rem;
+  }
+
+  .nightfall__container {
+    width: min(960px, 94%);
+  }
+
+  .nightfall__heading {
+    font-size: 4rem;
+  }
+
+  .nightfall__body p {
+    font-size: 1.18rem;
+    line-height: 1.76;
+  }
+
+  .nightfall__cta .btn {
+    padding: 0.95rem 1.35rem;
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .nightfall {
+    padding-block: 5rem;
+  }
+
+  .nightfall__container {
+    width: 94%;
+  }
+
+  .nightfall__inner {
+    grid-template-columns: 1fr;
+    gap: clamp(2.4rem, 5vw, 3.2rem);
+  }
+
+  /* Single-column stack: sticky would just pin the image at the top of a
+     much taller section instead of tracking alongside the copy — off. */
+  .nightfall__visual {
+    position: static;
+  }
+
+  .nightfall__devices,
+  .nightfall__visual:hover .nightfall__devices {
+    transform: none;
+  }
+
+  .nightfall__visual:hover .nightfall__phone {
+    transform: none;
+  }
+
+  .nightfall__heading {
+    font-size: 3.6rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .nightfall {
+    padding-block: 4.2rem;
+  }
+
+  .nightfall__container {
+    width: 92%;
+  }
+
+  .nightfall__heading {
+    font-size: clamp(2.6rem, 10vw, 3.6rem);
+  }
+
+  .nightfall__body p {
+    font-size: 0.98rem;
+  }
+
+  /* Phone gets a little more of the width here — at ~330px of usable column
+     the desktop ratio shrinks its screen past the point of being readable. */
+  .nightfall__devices {
+    padding-bottom: 7%;
+  }
+
+  /* Shadows are rem-based, so at this size the desktop values read as fog
+     rather than depth — scaled back along with the devices. */
+  .nightfall__laptop {
+    width: 86%;
+    filter: drop-shadow(0 0.7rem 1.1rem rgba(0, 0, 0, 0.55));
+  }
+
+  .nightfall__phone {
+    width: 27%;
+    filter: drop-shadow(-0.4rem 0.6rem 0.9rem rgba(0, 0, 0, 0.62));
+  }
+
+  .nightfall__cta .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 400px) {
+  .nightfall {
+    padding-block: 3.8rem;
+  }
+
+  .nightfall__heading {
+    font-size: 2.4rem;
+  }
+}

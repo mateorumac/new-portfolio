@@ -101,7 +101,7 @@ export default function Contact() {
       } else {
         throw new Error("Submit failed");
       }
-    } catch (_err) {
+    } catch {
       setToast({
         open: true,
         text:

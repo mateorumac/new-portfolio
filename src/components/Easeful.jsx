@@ -115,13 +115,23 @@ export default function Easeful() {
           {/* RIGHT: real product screenshot */}
           <div className="easeful__visual" data-reveal data-delay="280">
             <div className="easeful__glow-under" aria-hidden="true" />
-            <img
-              src={easefulMockup}
-              alt="Easeful financial decision app screenshot"
-              className="easeful__img"
-              loading="lazy"
-              decoding="async"
-            />
+            {/* The mockup is the marketing site, so it points there rather
+                than at the app itself. */}
+            <a
+              href="https://tryeaseful.com/en"
+              className="easeful__shot"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Easeful financial decision app"
+            >
+              <img
+                src={easefulMockup}
+                alt="Easeful financial decision app screenshot"
+                className="easeful__img"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
           </div>
 
         </div>

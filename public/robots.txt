@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Allow: /tools/
+Allow: /game/
 
 Sitemap: https://mateorumac.com/sitemap.xml
 Sitemap: https://mateorumac.com/tools/sitemap-index.xml
