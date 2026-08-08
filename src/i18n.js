@@ -8,9 +8,16 @@ i18n
     resources: {
       hr: { translation: hr }
     },
-    lng: 'en',          
+    lng: 'en',
     fallbackLng: 'en',
-    interpolation: { escapeValue: false }
+    interpolation: { escapeValue: false },
+    // This project's convention is flat keys that are themselves the literal
+    // English source text (e.g. "Thesis:", "Languages:"). Without disabling
+    // these, i18next's default separators silently break any key containing
+    // ":" (parsed as a namespace split) or "." (parsed as a nested path),
+    // rendering an empty string instead of the text.
+    nsSeparator: false,
+    keySeparator: false,
   });
 
 export default i18n;

@@ -1,58 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
+import { SKILL_GROUPS } from "../data/skillsData";
 import "../styles/Skills.css";
-
-const SKILL_GROUPS = [
-  {
-    key: "frontend",
-    label: "Frontend",
-    items: [
-      "JavaScript",
-      "React",
-      "Astro",
-      "Vite",
-      "Next.js",
-      "HTML5",
-      "CSS3",
-      "Chart.js",
-      "Three.js",
-      "Responsive UI",
-      "Accessibility",
-      "i18n",
-    ],
-  },
-  {
-    key: "backend",
-    label: "Backend",
-    items: [
-      "PHP",
-      "MySQL",
-      "REST API Development",
-      "Third-party API Integrations",
-      "Authentication & Authorization",
-      "Stripe Payments",
-      "Webhook Processing",
-      "Server-side Validation",
-      "Data aggregation",
-    ],
-  },
-  {
-    key: "tools",
-    label: "Tools & Delivery",
-    items: [
-      "Git",
-      "Bitbucket",
-      "Postman",
-      "Composer",
-      "SSH",
-      "cPanel",
-      "API debugging",
-      "Technical SEO",
-      "Production deployment",
-      "Email / SMTP",
-    ],
-  },
-];
 
 export default function Skills() {
   const { t } = useTranslation();
