@@ -1,0 +1,39 @@
+# Mateo Rumac
+
+> Portfolio of Mateo Rumac, a full-stack developer building production web applications with React, Astro, PHP, MySQL, REST APIs, Stripe integrations, dashboards, and multilingual interfaces.
+
+The primary language version of this site is English, with Croatian equivalents for the main pages.
+
+## Main Pages
+
+- [Homepage (EN)](https://mateorumac.com/en): Main portfolio homepage with project highlights, career timeline, technical skills, and contact section.
+- [Homepage (HR)](https://mateorumac.com/hr): Croatian version of the homepage.
+- [Resume (EN)](https://mateorumac.com/en/resume): Resume page with summary, experience, selected projects, skills, education, and contact links.
+- [Resume (HR)](https://mateorumac.com/hr/resume): Croatian version of the resume page.
+
+## Projects
+
+- [Easeful](https://tryeaseful.com/en): Financial decision product focused on life runway and time-cost framing.
+- [Easeful App](https://app.tryeaseful.com): Live app experience for Easeful.
+- [DevTools](https://mateorumac.com/tools/): Privacy-first browser toolkit for image conversion, favicon and Open Graph generation, contrast checking, launch auditing, and related workflows.
+- [Nightfall](https://mateorumac.com/game/): Browser arcade flight game built with Three.js, WebGL, and procedural terrain streaming.
+- [D&A Property Management](https://danda.hr): Direct booking platform with multilingual booking flows, landlord profit calculator, and role-based dashboards.
+- [D&A Smart Solutions](https://dandaweb.com): Company web-development branch site with parallax hero, portfolio carousel, pricing, and contact flow.
+- [Apposta Lei](https://appostalei.com): Multilingual hospitality distributor website with product and brand hubs, galleries, and SEO-focused structure.
+- [Meštri od Broda](https://mestriodbroda.hr): Superyacht painting and refit company site with project gallery, reviews, and quote-request contact flow.
+- [Mind Well](https://mindwell.hr): Corporate wellness website with Markdown blog, pricing pages, and cookie consent integration.
+- [Gran Caffe Monaco](https://grancaffe.mc): Restaurant website with menu, gallery, events, contact pages, and booking widget integration.
+- [Hotel Natura](https://hotel-natura.com): Hotel website with custom direct booking flow, live availability and rates, and amenities gallery.
+- [Rent a Boat Zadar](https://rentaboatzadareu.com): Multilingual charter website with fleet pages, destination content, pricing tables, and inquiry flow.
+- [LunaSky Bay](https://lunasky-bay.com): Mobile-home rental website with availability calendar, gallery, reviews, and multilingual property pages.
+- [Taxi Kamidi](https://taxi-kamidi.com/en): Taxi company website with smooth-scroll presentation, fleet showcase, services, and multilingual contact flow.
+
+## Documents
+
+- [CV PDF (EN)](https://mateorumac.com/Mateo_Rumac_Full_Stack_Developer_CV.pdf): English CV PDF.
+- [CV PDF (HR)](https://mateorumac.com/Mateo_Rumac_Full_Stack_Developer_CV_HR.pdf): Croatian CV PDF.
+
+## Contact
+
+- Email: mailto:mateo.rumac@gmail.com
+- LinkedIn: https://www.linkedin.com/in/mateo-rumac/

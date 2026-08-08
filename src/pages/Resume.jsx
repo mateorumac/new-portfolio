@@ -15,7 +15,7 @@
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useEffect, useRef } from "react";
-import { FiDownload, FiPlay, FiTool } from "react-icons/fi";
+import { FiCode, FiDownload, FiPlay, FiServer, FiTool } from "react-icons/fi";
 import { FaLinkedinIn } from "react-icons/fa";
 import { MdOutlineMail } from "react-icons/md";
 import { SKILL_GROUPS } from "../data/skillsData";
@@ -25,6 +25,11 @@ export default function Resume() {
   const { t } = useTranslation();
   const { lang } = useParams();
   const currentLang = lang === "hr" ? "hr" : "en";
+  const groupIcons = {
+    frontend: FiCode,
+    backend: FiServer,
+    tools: FiTool,
+  };
 
   const pdfUrl =
     currentLang === "hr"
@@ -246,10 +251,14 @@ export default function Resume() {
                   data-accent={group.key}
                 >
                   <div className="resume-page__skill-label">
-                    <span
-                      className="resume-page__skill-mark"
-                      aria-hidden="true"
-                    />
+                    {(() => {
+                      const Icon = groupIcons[group.key];
+                      return Icon ? (
+                        <span className="resume-page__skill-icon" aria-hidden="true">
+                          <Icon />
+                        </span>
+                      ) : null;
+                    })()}
                     <h3>{t(group.label)}</h3>
                   </div>
                   <ul className="resume-page__skill-tags">

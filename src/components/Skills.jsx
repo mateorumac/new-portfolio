@@ -1,11 +1,17 @@
 import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
+import { FiCode, FiServer, FiTool } from "react-icons/fi";
 import { SKILL_GROUPS } from "../data/skillsData";
 import "../styles/Skills.css";
 
 export default function Skills() {
   const { t } = useTranslation();
   const sectionRef = useRef(null);
+  const groupIcons = {
+    frontend: FiCode,
+    backend: FiServer,
+    tools: FiTool,
+  };
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -50,7 +56,14 @@ export default function Skills() {
               data-delay={String(150 + idx * 90)}
             >
               <div className="skills__row-label">
-                <span className="skills__row-mark" aria-hidden="true" />
+                {(() => {
+                  const Icon = groupIcons[group.key];
+                  return Icon ? (
+                    <span className="skills__row-icon" aria-hidden="true">
+                      <Icon />
+                    </span>
+                  ) : null;
+                })()}
                 <h3 className="skills__row-title">{t(group.label)}</h3>
               </div>
               <ul className="skills__row-tags">
