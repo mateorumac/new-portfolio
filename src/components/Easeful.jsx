@@ -56,7 +56,7 @@ export default function Easeful() {
 
             <div className="easeful__body" data-reveal data-delay="160">
               <p className="easeful__hook">
-                {t("What does this decision actually cost me \u2014 in time?")}
+                {t("What does this decision actually cost me, in time?")}
               </p>
               <p>
                 <a

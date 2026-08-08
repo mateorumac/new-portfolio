@@ -34,8 +34,8 @@ function LangLayout() {
         ? "Mateo Rumac | Životopis"
         : "Mateo Rumac | Resume"
       : isHr
-      ? "Mateo Rumac | Full Stack Developer i Digitalna Rješenja"
-      : "Mateo Rumac | Full Stack Developer & Digital Solutions";
+      ? "Mateo Rumac | Full-stack Developer i web aplikacije"
+      : "Mateo Rumac | Full-stack Developer";
 
     document.title = pageTitle;
 
@@ -44,8 +44,8 @@ function LangLayout() {
       metaDesc.setAttribute(
         "content",
         isHr
-          ? "Portfolio frontend developera Matea Rumca. Izrađujem brza, pristupačna i moderno dizajnirana web rješenja s naglaskom na React, UX i performanse."
-          : "Portfolio of frontend developer Mateo Rumac. I build fast, accessible and thoughtfully crafted web experiences with a strong focus on React, UX and performance."
+          ? "Portfolio full-stack developera Matea Rumca. Razvijam produkcijske web aplikacije koristeći React, Astro, PHP i REST API-je."
+          : "Full-stack developer building production web applications with React, Astro, PHP and REST APIs. Explore selected professional work and independent projects."
       );
     }
 
@@ -54,8 +54,8 @@ function LangLayout() {
       keywords.setAttribute(
         "content",
         isHr
-          ? "frontend developer, web developer, React developer, Pula, Hrvatska, remote, JavaScript, Vite, Next.js, dizajn sučelja, moderne web aplikacije"
-          : "frontend developer, web developer, React developer, Croatia, remote, JavaScript, Vite, Next.js, UI design, modern web applications"
+          ? "full-stack developer, frontend developer, web developer, React developer, PHP developer, Pula, Hrvatska, remote, JavaScript, Astro, REST API, moderne web aplikacije"
+          : "full-stack developer, frontend developer, web developer, React developer, PHP developer, Croatia, remote, JavaScript, Astro, REST APIs, modern web applications"
       );
     }
 

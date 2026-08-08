@@ -19,7 +19,7 @@ export default function NotFound() {
 
   return (
     <main style={{ padding: '32px' }}>
-      <h1>404 — {safeLang === 'hr' ? t('notFound.title') : 'Page not found'}</h1>
+      <h1>404: {safeLang === 'hr' ? t('notFound.title') : 'Page not found'}</h1>
       <Link to={`/${safeLang}`}>↩︎ {safeLang === 'hr' ? t('nav.home') : 'Home'}</Link>
     </main>
   );

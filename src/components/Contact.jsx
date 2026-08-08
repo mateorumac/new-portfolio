@@ -17,20 +17,39 @@ export default function Contact() {
   useEffect(() => {
     const root = sectionRef.current;
     if (!root) return;
-    const items = root.querySelectorAll("[data-reveal]");
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add("is-visible");
-            io.unobserve(e.target);
-          }
-        });
-      },
-      { threshold: 0.18, rootMargin: "0px 0px -8% 0px" }
+    const reveal = (entries, obs) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("is-visible");
+          obs.unobserve(e.target);
+        }
+      });
+    };
+
+    const items = root.querySelectorAll(
+      "[data-reveal]:not(.contact__footer)"
     );
+    const io = new IntersectionObserver(reveal, {
+      threshold: 0.18,
+      rootMargin: "0px 0px -8% 0px",
+    });
     items.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+
+    // The footer sits at the very end of the page, so once it's pulled
+    // close to the document's true bottom edge there's no further room to
+    // scroll it past the -8% exclusion above — it would never intersect and
+    // would stay invisible forever. Give it its own, unshrunk root instead.
+    const footer = root.querySelector(".contact__footer[data-reveal]");
+    let footerIo;
+    if (footer) {
+      footerIo = new IntersectionObserver(reveal, { threshold: 0 });
+      footerIo.observe(footer);
+    }
+
+    return () => {
+      io.disconnect();
+      footerIo?.disconnect();
+    };
   }, []);
 
   const [values, setValues] = useState({ name: "", email: "", message: "" });
@@ -126,25 +145,26 @@ export default function Contact() {
 
       <div className="contact__container">
         <h2 className="contact__title" data-reveal="fade-up">
-          {t("LET'S TALK")}
+          {t("OPEN TO OPPORTUNITIES")}
         </h2>
 
         <div className="contact__content">
           <div className="contact__left" data-reveal="slide-left">
             <p className="contact__lead">
-              {t("Have a project in mind or just want to say hi?")}
+              {t(
+                "I am interested in full-stack and web development roles, especially projects that combine polished user interfaces, API integrations and real business workflows. I am open to opportunities in Croatia and remote positions."
+              )}
             </p>
             <p className="contact__copy">
               {t(
-                "I'm always up for new opportunities and interesting ideas. Reach out through the form, or directly via email or LinkedIn, I reply as soon as I can. My email is"
-              )}{" "}
-              <a href="mailto:mateo.rumac@gmail.com">mateo.rumac@gmail.com</a>.
+                "Reach out through the form, or directly via email or LinkedIn, I reply as soon as I can."
+              )}
             </p>
 
             <div className="contact__social">
               <a
                 className="contact__social-btn"
-                href="https://www.linkedin.com/in/mateo-rumac-170a0b304/"
+                href="https://www.linkedin.com/in/mateo-rumac/"
                 target="_blank"
                 rel="noreferrer noopener"
               >
@@ -266,7 +286,7 @@ export default function Contact() {
                 disabled={submitting}
               >
                 <FiSend aria-hidden="true" />
-                {submitting ? t("Sending...") : t("Send")}
+                {submitting ? t("Sending...") : t("Send message")}
               </button>
             </div>
           </form>

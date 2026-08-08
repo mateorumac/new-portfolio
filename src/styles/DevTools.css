@@ -129,6 +129,7 @@
 .devtools__brand {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 0.65rem;
   margin-bottom: clamp(1rem, 2.2vw, 1.35rem);
 }

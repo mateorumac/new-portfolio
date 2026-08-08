@@ -1,11 +1,23 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
 import { FaLinkedinIn } from "react-icons/fa";
 import { MdOutlineMail } from "react-icons/md";
+import { FiDownload } from "react-icons/fi";
 import "../styles/Hero.css";
 
 export default function Hero() {
   const { t } = useTranslation();
+  const { lang } = useParams();
+  const currentLang = lang === "hr" ? "hr" : "en";
+  const cvHref =
+    currentLang === "hr"
+      ? "/Mateo_Rumac_Full_Stack_Developer_CV_HR.pdf"
+      : "/Mateo_Rumac_Full_Stack_Developer_CV.pdf";
+  const cvFileName =
+    currentLang === "hr"
+      ? "Mateo_Rumac_Full_Stack_Developer_CV_HR.pdf"
+      : "Mateo_Rumac_Full_Stack_Developer_CV.pdf";
 
   const phrases = useMemo(
     () => [
@@ -21,12 +33,22 @@ export default function Hero() {
     [t]
   );
 
+  const prefersReducedMotion = useMemo(
+    () =>
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    []
+  );
+
   const [i, setI] = useState(0);
-  const [txt, setTxt] = useState("");
+  const [txt, setTxt] = useState(() =>
+    prefersReducedMotion ? phrases[0] || "" : ""
+  );
   const [del, setDel] = useState(false);
   const [pause, setPause] = useState(false);
 
   useEffect(() => {
+    if (prefersReducedMotion) return; // show a static first line, skip the cycle
     if (pause) {
       const p = setTimeout(() => setPause(false), 1100);
       return () => clearTimeout(p);
@@ -50,7 +72,7 @@ export default function Hero() {
       del ? 28 : 55
     );
     return () => clearTimeout(to);
-  }, [txt, del, pause, i, phrases]);
+  }, [txt, del, pause, i, phrases, prefersReducedMotion]);
 
   const railRef = useRef(null);
   useEffect(() => {
@@ -94,23 +116,35 @@ export default function Hero() {
 
       <div className="hero__card">
         <span className="hero__dash" />
-        <h1 className="hero__typed">
+        <h1 className="hero__headline visually-hidden">
+          {t(
+            "Full-stack developer building production web applications."
+          )}
+        </h1>
+        <div className="hero__typed" aria-hidden="true">
           <span className="hero__code">{txt}</span>
           <span className="hero__caret" aria-hidden="true">
             |
           </span>
-        </h1>
+        </div>
 
         <p className="hero__subtitle">
-          {t("I build websites, web apps, and AI automations, basically whatever needs building.")}
+          {t(
+            "I build modern React and Astro interfaces, PHP APIs, booking systems, Stripe integrations and internal tools, from user experience to production deployment."
+          )}
         </p>
 
         <div className="hero__cta">
-          <a href="#projects" className="btn primary">
-            {t("View Projects")}
+          <a href="#devtools" className="btn primary">
+            {t("View projects")}
           </a>
-          <a href="#contact" className="btn ghost">
-            {t("Let's Talk")}
+          <a
+            href={cvHref}
+            download={cvFileName}
+            className="btn ghost"
+          >
+            <FiDownload aria-hidden="true" />
+            {t("Download CV")}
           </a>
         </div>
       </div>
@@ -125,7 +159,7 @@ export default function Hero() {
         <div className="social-rail__icons">
           <a
             className="social-rail__btn"
-            href="https://www.linkedin.com/in/mateo-rumac-170a0b304/"
+            href="https://www.linkedin.com/in/mateo-rumac/"
             target="_blank"
             rel="noreferrer noopener"
             aria-label="LinkedIn"

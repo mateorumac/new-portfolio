@@ -53,13 +53,13 @@ export default function About() {
           <article className="about__card" data-reveal="slide-right">
             <p className="about__lead">
               {t(
-                "Hi 👋 I'm Mateo Rumac, a full-stack developer who builds websites, web apps, and AI-powered automations. I like turning an idea into something people can actually click around in, fast, and without the confusing parts."
+                "Hi 👋 I'm Mateo Rumac, a full-stack developer with frontend development as my strongest area. I build production web applications end to end, from UI implementation to API integration and deployment."
               )}
             </p>
 
             <p>
               {t(
-                "Most of my work happens in React and Astro on the frontend, PHP and custom APIs on the backend, and automations wherever they save someone time, think booking systems, internal dashboards, that kind of thing. If it needs to work in production, not just in a demo, that's the part I actually enjoy."
+                "My core stack is React and Astro on the frontend, and PHP, MySQL and REST APIs on the backend. I build booking flows, dashboards, payment systems, authentication, role-based interfaces and automations that save people time."
               )}
             </p>
 

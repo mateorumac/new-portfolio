@@ -108,7 +108,7 @@ export default function DevTools() {
                 rel="noopener"
                 title="dev-tools by Mateo Rumac"
               >
-                {t("Open dev-tools")}
+                {t("Open DevTools")}
                 <svg
                   width="15"
                   height="15"

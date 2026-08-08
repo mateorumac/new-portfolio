@@ -32,17 +32,19 @@ export default function Navbar() {
     navigate(seg.join("/") || `/${targetLang}`);
   };
 
+  const navRef = useRef(null);
+
   const doScroll = (id) => {
     const el = document.getElementById(id);
     if (!el) return;
-    const navH =
-      parseFloat(
-        getComputedStyle(document.documentElement).getPropertyValue(
-          "--nav-height"
-        )
-      ) || 64;
-    const top = el.getBoundingClientRect().top + window.scrollY - navH;
-    window.scrollTo({ top, behavior: "smooth" });
+    const elTop = el.getBoundingClientRect().top + window.scrollY;
+    // Scrolling down hides the navbar (see the scroll listener below), so
+    // there's nothing to clear space for in that direction — reserving navH
+    // there just leaves a gap above the target. Scrolling up brings the
+    // navbar back, so only then does it need to be accounted for.
+    const scrollingUp = elTop < window.scrollY;
+    const navH = scrollingUp ? navRef.current?.offsetHeight || 64 : 0;
+    window.scrollTo({ top: elTop - navH, behavior: "smooth" });
   };
 
   const scrollToId = (id) => {
@@ -123,6 +125,7 @@ export default function Navbar() {
         onMouseEnter={() => setHidden(false)}
       />
       <header
+        ref={navRef}
         className={`navbar ${hidden ? "navbar--hidden" : ""} ${
           scrolled ? "navbar--scrolled" : ""
         } ${location.pathname.endsWith("/resume") ? "navbar--resume" : ""}`}
@@ -140,10 +143,13 @@ export default function Navbar() {
             <button className="navlink" onClick={() => scrollToId("about")}>
               {t("About")}
             </button>
+            <button className="navlink" onClick={() => scrollToId("skills")}>
+              {t("Skills")}
+            </button>
             <button className="navlink" onClick={() => scrollToId("career")}>
               {t("Career")}
             </button>
-            <button className="navlink" onClick={() => scrollToId("projects")}>
+            <button className="navlink" onClick={() => scrollToId("devtools")}>
               {t("Projects")}
             </button>
             <button className="navlink" onClick={() => scrollToId("contact")}>
@@ -248,13 +254,19 @@ export default function Navbar() {
                 </button>
                 <button
                   className="navlink nav-drawer__link"
+                  onClick={() => handleNavClickScroll("skills")}
+                >
+                  {t("Skills")}
+                </button>
+                <button
+                  className="navlink nav-drawer__link"
                   onClick={() => handleNavClickScroll("career")}
                 >
                   {t("Career")}
                 </button>
                 <button
                   className="navlink nav-drawer__link"
-                  onClick={() => handleNavClickScroll("projects")}
+                  onClick={() => handleNavClickScroll("devtools")}
                 >
                   {t("Projects")}
                 </button>

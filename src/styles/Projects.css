@@ -214,6 +214,100 @@
   padding: clamp(1rem, 3vw, 1.4rem);
   border-top: 1px solid var(--border);
 }
+.work__info--mobile .work__tech {
+  margin-top: 0.9rem;
+  margin-bottom: 0;
+}
+
+/* ----- ADDITIONAL WORK (collapsible, full-size cards) -----
+   Column layout so the toggle always centers on its own row; #additional-work
+   sits below at full width (default align-items: stretch) instead of being a
+   row-sibling that squeezes the button once it has content. */
+.work__more {
+  margin-top: clamp(2.6rem, 5.5vw, 3.8rem);
+  display: flex;
+  flex-direction: column;
+}
+
+.work__more-toggle {
+  align-self: center;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  height: 3.1rem;
+  padding: 0 1.7rem;
+  border-radius: 0;
+  border: 1px solid transparent;
+  background: linear-gradient(var(--panel), var(--panel)) padding-box,
+    linear-gradient(
+        120deg,
+        var(--accent-2),
+        var(--accent),
+        var(--accent-hot, #d19cff)
+      )
+      border-box;
+  color: var(--text);
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 0;
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.25s ease, color 0.25s ease;
+}
+.work__more-toggle::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(
+    120deg,
+    var(--accent-2),
+    var(--accent),
+    var(--accent-hot, #d19cff)
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.work__more-toggle:hover,
+.work__more-toggle:focus-visible {
+  color: #0c1320;
+  box-shadow: 0 0.85rem 1.9rem rgba(0, 0, 0, 0.24);
+}
+.work__more-toggle:hover::before,
+.work__more-toggle:focus-visible::before {
+  opacity: 1;
+}
+.work__more-toggle:focus-visible {
+  outline: 0.12rem solid var(--accent-2);
+  outline-offset: 0.2rem;
+}
+
+#additional-work {
+  overflow: hidden;
+}
+#additional-work:has(.work__grid) {
+  margin-bottom: clamp(1.8rem, 3.4vw, 2.4rem);
+}
+
+.work__more-chevron {
+  transition: transform 0.3s cubic-bezier(0.22, 0.8, 0.33, 1);
+}
+.work__more-chevron.is-open {
+  transform: rotate(180deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .work__more-chevron {
+    transition: none;
+  }
+  .work__more-toggle {
+    transition: none;
+  }
+}
 @media (max-width: 1024px) {
   .work__info,
   .work__tags-overlay {
@@ -294,7 +388,7 @@
   }
 
   .work__card {
-    border-radius: 0.6rem;
+    border-radius: 0;
   }
 
   .work__info,

@@ -84,7 +84,7 @@ export default function Nightfall() {
     {
       lead: t("Infinite procedural terrain"),
       rest: t(
-        " — ridged-multifractal noise, domain warping, and slope-based erosion, streamed in incrementally so regenerating the world never causes a frame hitch."
+        ": ridged-multifractal noise, domain warping, and slope-based erosion, streamed in incrementally so regenerating the world never causes a frame hitch."
       ),
     },
     {
@@ -96,7 +96,7 @@ export default function Nightfall() {
     {
       lead: t("Hand-tuned PBR/bloom pipeline"),
       rest: t(
-        " — custom sun sprite, slope+elevation texture blending, thresholds balanced so emissive rings glow without blowing out the jet."
+        ": custom sun sprite, slope+elevation texture blending, thresholds balanced so emissive rings glow without blowing out the jet."
       ),
     },
     {

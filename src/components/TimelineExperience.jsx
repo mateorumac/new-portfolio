@@ -193,7 +193,7 @@ export default function TimelineExperience() {
                       </svg>
                     </span>
                     <h3 className="tl__role">
-                      {t("BSc Informatics — Juraj Dobrila University of Pula")}
+                      {t("BSc Informatics, Juraj Dobrila University of Pula")}
                     </h3>
                   </div>
                   <span className="tl__pill">
@@ -249,10 +249,10 @@ export default function TimelineExperience() {
                       </svg>
                     </span>
                     <h3 className="tl__role">
-                      {t("Full-Stack Web Developer — D&A Smart Solutions")}
+                      {t("Full-Stack Web Developer, D&A Smart Solutions")}
                     </h3>
                   </div>
-                  <span className="tl__pill">{t("Nov 2024 – Present")}</span>
+                  <span className="tl__pill">{t("Nov 2024 - Present")}</span>
                 </header>
 
                 <p className="tl__lead">

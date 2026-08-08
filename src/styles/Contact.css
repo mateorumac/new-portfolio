@@ -1,7 +1,7 @@
 .contact {
   position: relative;
   --pad: clamp(4.8rem, 10vw, 8.5rem);
-  --pad-bottom: clamp(2.2rem, 5vw, 3rem);
+  --pad-bottom: clamp(1.1rem, 2.5vw, 1.5rem);
   padding-top: var(--pad);
   padding-bottom: var(--pad-bottom);
   min-height: 100dvh;
@@ -92,8 +92,10 @@
 
 .contact__title {
   margin: 0 0 clamp(1.6rem, 4.5vw, 2.6rem);
+  max-width: 16ch;
   font-weight: 800;
   font-size: clamp(2.8rem, 7vw, 4.6rem);
+  line-height: 1.02;
   letter-spacing: 0.02em;
   text-align: left;
 }
@@ -111,13 +113,15 @@
 }
 
 .contact__lead {
-  margin: 0 0 0.45rem;
-  font-size: clamp(1.28rem, 1.04rem + 0.9vw, 1.7rem);
-  font-weight: 700;
+  margin: 0 0 0.9rem;
+  font-size: clamp(0.98rem, 0.86rem + 0.45vw, 1.12rem);
+  font-weight: 400;
+  line-height: 1.6;
+  color: color-mix(in oklab, var(--text) 92%, white 8%);
 }
 
 .contact__copy {
-  margin: 0 0 1rem;
+  margin: 0 0 1.1rem;
   color: color-mix(in oklab, var(--text) 92%, white 8%);
   font-size: clamp(0.98rem, 0.86rem + 0.45vw, 1.12rem);
 }
@@ -128,13 +132,6 @@
 }
 .contact__copy a:hover {
   color: var(--brand);
-}
-
-.contact__lead {
-  margin-bottom: 0.55rem;
-}
-.contact__copy {
-  margin-bottom: 1.1rem;
 }
 
 .contact__social {
@@ -308,7 +305,7 @@
 
   position: absolute;
   left: 50%;
-  bottom: clamp(1rem, 3vw, 1.6rem);
+  bottom: clamp(0.3rem, 1vw, 0.5rem);
   width: 0.95rem;
   height: 0.95rem;
   border-bottom: 0.26rem solid var(--cue-color);
@@ -359,7 +356,7 @@
   text-align: center;
   color: var(--muted);
   margin-top: clamp(2.5rem, 6vw, 3.5rem);
-  padding-bottom: clamp(1.2rem, 3vw, 1.6rem);
+  padding-bottom: clamp(0.5rem, 1.2vw, 0.7rem);
   margin-bottom: 0;
 }
 
@@ -472,7 +469,7 @@
 @media (max-width: 1024px) {
   .contact {
     padding-top: 4.6rem;
-    padding-bottom: 2.4rem;
+    padding-bottom: 1.4rem;
     min-height: 70dvh;
   }
 
@@ -490,7 +487,7 @@
   }
 
   .contact__lead {
-    font-size: 1.55rem;
+    font-size: 1.28rem;
   }
 
   .contact__copy {
@@ -527,7 +524,7 @@
 @media (max-width: 900px) {
   .contact {
     padding-top: 4.4rem;
-    padding-bottom: 2.8rem;
+    padding-bottom: 1.6rem;
     min-height: 100dvh;
   }
 
@@ -555,7 +552,7 @@
   }
 
   .contact__lead {
-    font-size: 1.45rem;
+    font-size: 1.15rem;
   }
 
   .contact__copy {
@@ -577,12 +574,16 @@
     padding: 1rem 1.3rem;
     font-size: 1.05rem;
   }
+
+  .form__actions {
+    justify-content: center;
+  }
 }
 
 @media (max-width: 600px) {
   .contact {
     padding-top: 4rem;
-    padding-bottom: 2rem;
+    padding-bottom: 1.2rem;
     min-height: 120dvh;
   }
 
@@ -600,7 +601,7 @@
   }
 
   .contact__lead {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
 
   .contact__copy {
@@ -639,6 +640,7 @@
   .contact .btn {
     width: 100%;
     text-align: center;
+    justify-content: center;
     padding: 0.95rem 1.2rem;
     font-size: 1rem;
   }
@@ -653,7 +655,7 @@
 @media (max-width: 400px) {
   .contact {
     padding-top: 3.3rem;
-    padding-bottom: 2rem;
+    padding-bottom: 1.2rem;
     min-height: 125dvh;
   }
 
@@ -667,7 +669,7 @@
   }
 
   .contact__lead {
-    font-size: 1.1rem;
+    font-size: 0.96rem;
   }
 
   .contact__copy {

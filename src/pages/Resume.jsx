@@ -3,8 +3,6 @@ import { Link, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { FiArrowLeft, FiDownload, FiMail } from "react-icons/fi";
 import { FaLinkedinIn } from "react-icons/fa";
-import cvEN from "../assets/MR_CV_ENG.pdf";
-import cvHR from "../assets/MR_CV_HR.pdf";
 import "../styles/Resume.css";
 
 export default function Resume() {
@@ -12,9 +10,14 @@ export default function Resume() {
   const { lang } = useParams();
   const currentLang = lang === "hr" ? "hr" : "en";
 
-  const pdfUrl = currentLang === "hr" ? cvHR : cvEN;
+  const pdfUrl =
+    currentLang === "hr"
+      ? "/Mateo_Rumac_Full_Stack_Developer_CV_HR.pdf"
+      : "/Mateo_Rumac_Full_Stack_Developer_CV.pdf";
   const fileName =
-    currentLang === "hr" ? "Mateo_Rumac_CV_HR.pdf" : "Mateo_Rumac_CV_EN.pdf";
+    currentLang === "hr"
+      ? "Mateo_Rumac_Full_Stack_Developer_CV_HR.pdf"
+      : "Mateo_Rumac_Full_Stack_Developer_CV.pdf";
 
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
@@ -65,7 +68,7 @@ export default function Resume() {
         <div className="resume__miniFooter-actions">
           <a
             className="resume__btnFlat"
-            href="https://www.linkedin.com/in/mateo-rumac-170a0b304/"
+            href="https://www.linkedin.com/in/mateo-rumac/"
             target="_blank"
             rel="noreferrer noopener"
           >
