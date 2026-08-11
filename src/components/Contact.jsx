@@ -178,7 +178,7 @@ export default function Contact() {
               </a>
               <Link
                 className="contact__social-btn"
-                to={`/${currentLang}/resume`}
+                to={`/${currentLang}/resume/`}
                 aria-label={t("Resume")}
                 title={t("Resume")}
               >

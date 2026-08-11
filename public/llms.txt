@@ -6,10 +6,10 @@ The primary language version of this site is English, with Croatian equivalents 
 
 ## Main Pages
 
-- [Homepage (EN)](https://mateorumac.com/en): Main portfolio homepage with project highlights, career timeline, technical skills, and contact section.
-- [Homepage (HR)](https://mateorumac.com/hr): Croatian version of the homepage.
-- [Resume (EN)](https://mateorumac.com/en/resume): Resume page with summary, experience, selected projects, skills, education, and contact links.
-- [Resume (HR)](https://mateorumac.com/hr/resume): Croatian version of the resume page.
+- [Homepage (EN)](https://mateorumac.com/en/): Main portfolio homepage with project highlights, career timeline, technical skills, and contact section.
+- [Homepage (HR)](https://mateorumac.com/hr/): Croatian version of the homepage.
+- [Resume (EN)](https://mateorumac.com/en/resume/): Resume page with summary, experience, selected projects, skills, education, and contact links.
+- [Resume (HR)](https://mateorumac.com/hr/resume/): Croatian version of the resume page.
 
 ## Projects
 

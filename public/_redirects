@@ -1,0 +1,17 @@
+# Cloudflare Pages redirects. Rules are checked before static asset
+# serving, evaluated top to bottom, first match wins. Every entry here is
+# a single 301 hop — no chains.
+#
+# NOTE: the www.mateorumac.com -> mateorumac.com redirect is intentionally
+# NOT handled here. Cloudflare's own guidance is to do host-level
+# redirects via zone-level Bulk Redirects / Redirect Rules in the
+# dashboard, not via a Pages project's _redirects file.
+#
+# /tools/* and /game/* are separate deployments and are never routed to
+# this Pages project in the first place — no rule below may reference them.
+
+/                /en/               301
+/en              /en/               301
+/hr              /hr/               301
+/en/resume       /en/resume/        301
+/hr/resume       /hr/resume/        301

@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FiTool, FiPlay } from "react-icons/fi";
+import { isResumePath, isHomePath } from "../utils/paths";
 import "../styles/Navbar.css";
 
 import logo from "../assets/logo.webp";
@@ -48,9 +49,9 @@ export default function Navbar() {
   };
 
   const scrollToId = (id) => {
-    const onResume = location.pathname.endsWith("/resume");
+    const onResume = isResumePath(location.pathname);
     if (onResume) {
-      navigate(`/${currentLang}`, { state: { scrollTo: id } });
+      navigate(`/${currentLang}/`, { state: { scrollTo: id } });
     } else {
       doScroll(id);
     }
@@ -128,10 +129,10 @@ export default function Navbar() {
         ref={navRef}
         className={`navbar ${hidden ? "navbar--hidden" : ""} ${
           scrolled ? "navbar--scrolled" : ""
-        } ${location.pathname.endsWith("/resume") ? "navbar--resume" : ""}`}
+        } ${!isHomePath(location.pathname, currentLang) ? "navbar--no-hero" : ""}`}
       >
         <div className="navbar__inner">
-          <Link className="brand" to={`/${currentLang}`}>
+          <Link className="brand" to={`/${currentLang}/`}>
             {logo ? (
               <img src={logo} alt="Logo" className="brand__logo" />
             ) : null}
@@ -155,7 +156,7 @@ export default function Navbar() {
             <button className="navlink" onClick={() => scrollToId("contact")}>
               {t("Contact")}
             </button>
-            <Link className="navlink" to={`/${currentLang}/resume`}>
+            <Link className="navlink" to={`/${currentLang}/resume/`}>
               {t("Resume")}
             </Link>
           </nav>
@@ -278,7 +279,7 @@ export default function Navbar() {
                 </button>
                 <Link
                   className="navlink nav-drawer__link"
-                  to={`/${currentLang}/resume`}
+                  to={`/${currentLang}/resume/`}
                   onClick={closeMenu}
                 >
                   {t("Resume")}

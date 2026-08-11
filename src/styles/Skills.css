@@ -148,6 +148,12 @@
     row-gap: 0.9rem;
     padding-block: 1.5rem;
   }
+  /* The 2rem indent aligns the label within the desktop two-column grid —
+     once the grid collapses to one column above, it just pushes the label
+     out of line with the tags below it. */
+  .skills__row-label {
+    padding-left: 0;
+  }
 }
 
 @media (max-width: 480px) {

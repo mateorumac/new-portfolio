@@ -1,0 +1,9 @@
+# Cloudflare Pages custom headers. Canonicalizes each CV PDF to its
+# corresponding resume page so search engines consolidate signals onto
+# the HTML page rather than indexing the PDF as a separate result.
+
+/Mateo_Rumac_Full_Stack_Developer_CV.pdf
+  Link: <https://mateorumac.com/en/resume/>; rel="canonical"
+
+/Mateo_Rumac_Full_Stack_Developer_CV_HR.pdf
+  Link: <https://mateorumac.com/hr/resume/>; rel="canonical"

@@ -56,6 +56,69 @@ async function updateSitemapLastmod() {
   console.log(`Updated sitemap.xml lastmod (home: ${homeDate}, resume: ${resumeDate})`);
 }
 
+async function writeNotFoundPage() {
+  const indexPath = path.join(distDir, "index.html");
+  const notFoundPath = path.join(distDir, "404.html");
+
+  let html = await fs.readFile(indexPath, "utf8");
+
+  // Cloudflare Pages returns a genuine HTTP 404 for unmatched paths only
+  // when a top-level 404.html exists; without one it silently falls back
+  // to serving index.html with 200. This file boots the same built SPA
+  // (correct hashed asset tags for this build) so the app's own router
+  // still renders the real, themed, localized <NotFound/> route once JS
+  // runs — but its pre-JS, server-rendered <head> must not claim to be
+  // the homepage. Strip the homepage's canonical/OG/Twitter identity and
+  // JSON-LD, and swap in generic "not found" copy, so a crawler or social
+  // scraper that never executes JS doesn't see homepage metadata on a
+  // 404 response.
+  const NOT_FOUND_TITLE = "Page not found | Mateo Rumac";
+  const NOT_FOUND_DESC =
+    "The page you're looking for doesn't exist or may have moved.";
+
+  html = html
+    .replace(/<title>.*?<\/title>/, `<title>${NOT_FOUND_TITLE}</title>`)
+    .replace(
+      /<meta\s+name="description"\s+content="[^"]*"\s*\/>/,
+      `<meta name="description" content="${NOT_FOUND_DESC}" />`
+    )
+    .replace(/[ \t]*<link rel="canonical"[^>]*\/>\n?/, "")
+    .replace(
+      /<meta\s+property="og:title"\s+content="[^"]*"\s*\/>/,
+      `<meta property="og:title" content="${NOT_FOUND_TITLE}" />`
+    )
+    .replace(
+      /<meta\s+property="og:description"\s+content="[^"]*"\s*\/>/,
+      `<meta property="og:description" content="${NOT_FOUND_DESC}" />`
+    )
+    .replace(/[ \t]*<meta property="og:url"[^>]*\/>\n?/, "")
+    .replace(
+      /<meta\s+name="twitter:title"\s+content="[^"]*"\s*\/>/,
+      `<meta name="twitter:title" content="${NOT_FOUND_TITLE}" />`
+    )
+    .replace(
+      /<meta\s+name="twitter:description"\s+content="[^"]*"\s*\/>/,
+      `<meta name="twitter:description" content="${NOT_FOUND_DESC}" />`
+    )
+    .replace(
+      '<meta name="robots" content="index, follow" />',
+      '<meta name="robots" content="noindex, follow" />'
+    )
+    .replace(
+      /[ \t]*<!-- JSON-LD: Person \+ Website \+ projects -->\n?/,
+      ""
+    )
+    .replace(
+      /[ \t]*<script type="application\/ld\+json" id="ld-json-main">[\s\S]*?<\/script>\n?/,
+      ""
+    );
+
+  await fs.writeFile(notFoundPath, html, "utf8");
+  console.log(
+    "Wrote dist/404.html (standalone 404 shell: own title/description, no homepage canonical/OG/JSON-LD, noindex)"
+  );
+}
+
 async function main() {
   const server = await preview({ preview: { port: 4173, strictPort: true } });
   const base = `http://localhost:4173`;
@@ -85,6 +148,7 @@ async function main() {
   }
 
   await updateSitemapLastmod();
+  await writeNotFoundPage();
 }
 
 main().catch((err) => {

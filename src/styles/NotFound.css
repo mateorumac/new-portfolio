@@ -1,0 +1,159 @@
+/* THESIS: a 404 that still reads as this site — same fixed navbar, same
+   blurred corner-blob glow pair as DevTools/Easeful (not a flat vignette),
+   same footer bar as Resume — not a bare centered error template. FORM: a
+   dominant numeral anchors a centered block (Space Grotesk, solid accent,
+   no gradient fill), heading/body/CTA follow beneath it. */
+
+.not-found {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  padding-top: clamp(6.5rem, 11vw, 8rem);
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* ----- BACKGROUND GLOW BLOBS (same idiom as .devtools / .easeful) ----- */
+.not-found::before,
+.not-found::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(72px);
+  opacity: 0.16;
+  animation: notFoundBg 24s linear infinite;
+}
+
+.not-found::before {
+  inset: -10% auto auto -8%;
+  width: 38vw;
+  height: 38vw;
+  max-width: 540px;
+  max-height: 540px;
+  background: radial-gradient(56% 56% at 35% 35%, var(--accent-hot) 0%, transparent 60%),
+    radial-gradient(56% 56% at 68% 68%, var(--accent-2) 0%, transparent 60%);
+}
+
+.not-found::after {
+  inset: auto -6% -10% auto;
+  width: 42vw;
+  height: 42vw;
+  max-width: 620px;
+  max-height: 620px;
+  background: radial-gradient(58% 58% at 60% 35%, var(--accent) 0%, transparent 60%),
+    radial-gradient(58% 58% at 30% 70%, var(--accent-2) 0%, transparent 60%);
+}
+
+@keyframes notFoundBg {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(-2%, 2%, 0) rotate(-8deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .not-found::before,
+  .not-found::after {
+    animation: none;
+  }
+}
+
+.not-found__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: min(640px, 92%);
+  margin-inline: auto;
+  padding: clamp(2rem, 6vh, 3rem) 0 clamp(3rem, 8vh, 4rem);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .not-found__content {
+    animation: notFoundFadeUp 0.6s cubic-bezier(0.2, 0.7, 0.25, 1) both;
+  }
+  @keyframes notFoundFadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+.not-found__code {
+  margin: 0 0 0.4rem;
+  font-family: "Space Grotesk", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: clamp(4.5rem, 3.4rem + 5vw, 8rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+}
+
+.not-found__title {
+  margin: 0 0 0.9rem;
+  font-weight: 800;
+  font-size: clamp(1.8rem, 1.5rem + 1.6vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: 0.005em;
+  color: var(--text);
+}
+
+.not-found__body {
+  margin: 0 0 1.8rem;
+  max-width: 46ch;
+  font-size: clamp(1rem, 0.94rem + 0.3vw, 1.1rem);
+  color: var(--muted);
+}
+
+.not-found__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* .btn sets border-radius:10px at the same specificity (0,1,0) and can win
+   the cascade depending on bundle order, so this needs the extra .not-found
+   ancestor to reliably beat it. */
+.not-found .not-found__cta {
+  border-radius: 0;
+}
+
+.not-found__cta svg {
+  font-size: 1.05rem;
+}
+
+.not-found__footer {
+  padding: clamp(1.4rem, 3vw, 1.8rem) 0;
+  text-align: center;
+}
+
+.not-found__footer-bottom {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+/* ----- RESPONSIVE ----- */
+@media (max-width: 640px) {
+  .not-found__content {
+    padding-bottom: clamp(2.4rem, 8vh, 3rem);
+  }
+  .not-found__cta {
+    width: 100%;
+    justify-content: center;
+  }
+}

@@ -5,40 +5,40 @@
 >
 
   <url>
-    <loc>https://mateorumac.com/en</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mateorumac.com/en"/>
-    <xhtml:link rel="alternate" hreflang="hr" href="https://mateorumac.com/hr"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mateorumac.com/en"/>
+    <loc>https://mateorumac.com/en/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mateorumac.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://mateorumac.com/hr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mateorumac.com/en/"/>
     <lastmod>2026-04-07</lastmod>
     <priority>1.0</priority>
     <changefreq>monthly</changefreq>
   </url>
 
   <url>
-    <loc>https://mateorumac.com/hr</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mateorumac.com/en"/>
-    <xhtml:link rel="alternate" hreflang="hr" href="https://mateorumac.com/hr"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mateorumac.com/en"/>
+    <loc>https://mateorumac.com/hr/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mateorumac.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://mateorumac.com/hr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mateorumac.com/en/"/>
     <lastmod>2026-04-07</lastmod>
     <priority>1.0</priority>
     <changefreq>monthly</changefreq>
   </url>
 
   <url>
-    <loc>https://mateorumac.com/en/resume</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mateorumac.com/en/resume"/>
-    <xhtml:link rel="alternate" hreflang="hr" href="https://mateorumac.com/hr/resume"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mateorumac.com/en/resume"/>
+    <loc>https://mateorumac.com/en/resume/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mateorumac.com/en/resume/"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://mateorumac.com/hr/resume/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mateorumac.com/en/resume/"/>
     <lastmod>2026-04-07</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
 
   <url>
-    <loc>https://mateorumac.com/hr/resume</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mateorumac.com/en/resume"/>
-    <xhtml:link rel="alternate" hreflang="hr" href="https://mateorumac.com/hr/resume"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mateorumac.com/en/resume"/>
+    <loc>https://mateorumac.com/hr/resume/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mateorumac.com/en/resume/"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://mateorumac.com/hr/resume/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mateorumac.com/en/resume/"/>
     <lastmod>2026-04-07</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>

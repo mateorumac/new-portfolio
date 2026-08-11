@@ -94,14 +94,19 @@
   transition: background-size 0.2s ease, color 0.3s ease;
 }
 
-/* desktop nav only — dark on the transparent unscrolled navbar for contrast */
+/* desktop nav only — dark on the transparent unscrolled navbar for contrast
+   against the homepage hero. Pages with no hero backdrop behind the navbar
+   (resume, 404, ...) have a page background that already follows the theme,
+   so in dark mode they run light-on-dark from the first frame instead — see
+   .navbar--no-hero below. In light mode their background is light too, so
+   the default dark-ink color above already reads fine and stays as-is. */
 .navlinks .navlink {
   color: #10131a;
 }
 .navbar--scrolled .navlinks .navlink {
   color: var(--text);
 }
-.navbar--resume:not(.navbar--scrolled) .navlinks .navlink {
+:root:not([data-theme="light"]) .navbar--no-hero:not(.navbar--scrolled) .navlinks .navlink {
   color: #fff;
 }
 .navlink:hover,
@@ -132,6 +137,15 @@
   justify-content: center;
   flex-shrink: 0;
   transition: background 0.15s ease;
+}
+
+/* The lang and theme toggles' rings match .devtools-btn--ghost's
+   (Nightfall's) default border color/weight in both themes, rather than
+   the heavier solid #fff the base rule above gives them — var(--text)
+   already flips per theme, so one rule covers both. */
+.lang-btn,
+.theme-toggle {
+  border-color: color-mix(in oklab, var(--text) 28%, transparent);
 }
 
 .lang-btn__flag {
@@ -217,9 +231,23 @@
   border-color: color-mix(in oklab, #10131a 32%, transparent);
 }
 
-/* The resume header runs light-on-dark instead, same as its navlinks. */
-.navbar--resume:not(.navbar--scrolled) .nav__right .devtools-btn--ghost {
+/* Neither toggle is dark-ink over the hero the way Nightfall's text/icon
+   are (they keep var(--text) throughout), but their rings should still
+   track the same border color Nightfall uses in this state. */
+.navbar:not(.navbar--scrolled) .nav__right .lang-btn,
+.navbar:not(.navbar--scrolled) .nav__right .theme-toggle {
+  border-color: color-mix(in oklab, #10131a 32%, transparent);
+}
+
+/* Pages with no hero backdrop run light-on-dark instead in dark mode, same
+   as their navlinks — see the comment above .navlinks .navlink. */
+:root:not([data-theme="light"]) .navbar--no-hero:not(.navbar--scrolled) .nav__right .devtools-btn--ghost {
   color: #fff;
+  border-color: color-mix(in oklab, #fff 34%, transparent);
+}
+
+:root:not([data-theme="light"]) .navbar--no-hero:not(.navbar--scrolled) .nav__right .lang-btn,
+:root:not([data-theme="light"]) .navbar--no-hero:not(.navbar--scrolled) .nav__right .theme-toggle {
   border-color: color-mix(in oklab, #fff 34%, transparent);
 }
 
@@ -227,7 +255,7 @@
    back on hover — the effect stays identical whether or not the page is
    scrolled. */
 .navbar:not(.navbar--scrolled) .nav__right .devtools-btn--ghost:hover,
-.navbar--resume:not(.navbar--scrolled) .nav__right .devtools-btn--ghost:hover {
+.navbar--no-hero:not(.navbar--scrolled) .nav__right .devtools-btn--ghost:hover {
   color: var(--accent);
   border-color: var(--accent);
 }
@@ -477,7 +505,12 @@
   animation: navFadeSlide 0.48s cubic-bezier(0.2, 0.7, 0.25, 1) 0.05s both;
 }
 
-/* then nav links one by one */
+/* then nav links one by one. Stagger is 0.08s (not the earlier 0.12s) —
+   with 9 items total in the cascade (6 navlinks + 3 right-side buttons),
+   0.12s pushed the last item's reveal past ~1.6s, well into the window
+   where a real first hover lands: users would catch .theme-toggle still
+   mid-transform (translateY/scale, not just opacity) and see it visibly
+   settle under their cursor. */
 .navbar .navlinks .navlink {
   opacity: 0;
   animation: navFadeSlide 0.48s cubic-bezier(0.2, 0.7, 0.25, 1) both;
@@ -486,30 +519,35 @@
   animation-delay: 0.18s;
 }
 .navbar .navlinks .navlink:nth-child(2) {
-  animation-delay: 0.3s;
+  animation-delay: 0.26s;
 }
 .navbar .navlinks .navlink:nth-child(3) {
-  animation-delay: 0.42s;
+  animation-delay: 0.34s;
 }
 .navbar .navlinks .navlink:nth-child(4) {
-  animation-delay: 0.54s;
+  animation-delay: 0.42s;
 }
 .navbar .navlinks .navlink:nth-child(5) {
-  animation-delay: 0.66s;
+  animation-delay: 0.5s;
+}
+.navbar .navlinks .navlink:nth-child(6) {
+  animation-delay: 0.58s;
 }
 
-/* then right-side buttons */
+/* then right-side buttons — same cadence as .navlinks, continuing on from
+   its last item (0.58s) rather than restarting, so the whole header reads
+   as one left-to-right cascade instead of two overlapping ones. */
 .navbar .nav__right .devtools-btn {
-  opacity: 0;
-  animation: navFadeSlide 0.48s cubic-bezier(0.2, 0.7, 0.25, 1) 0.6s both;
-}
-.navbar .nav__right .lang-btn {
   opacity: 0;
   animation: navFadeSlide 0.48s cubic-bezier(0.2, 0.7, 0.25, 1) 0.66s both;
 }
+.navbar .nav__right .lang-btn {
+  opacity: 0;
+  animation: navFadeSlide 0.48s cubic-bezier(0.2, 0.7, 0.25, 1) 0.74s both;
+}
 .navbar .nav__right .theme-toggle {
   opacity: 0;
-  animation: navFadeSlide 0.48s cubic-bezier(0.2, 0.7, 0.25, 1) 0.78s both;
+  animation: navFadeSlide 0.48s cubic-bezier(0.2, 0.7, 0.25, 1) 0.82s both;
 }
 
 /* reduce motion = no entrance anims */
@@ -625,5 +663,9 @@ html[data-theme="light"] .theme-toggle::before {
 
   .nav-toggle {
     padding: 0.3rem 0.05rem;
+  }
+
+  .nav-drawer__nav .navlink.nav-drawer__link:first-child {
+    margin-top: 1rem;
   }
 }
