@@ -118,45 +118,12 @@ export default function Nightfall() {
       <div className="nightfall__container">
         <div className="nightfall__inner">
 
-          {/* LEFT: device mockups — laptop with the phone layered over its
-              bottom-right corner */}
-          <div className="nightfall__visual" data-reveal data-delay="0">
-            <div className="nightfall__glow-under" aria-hidden="true" />
-            <a
-              href="/game/"
-              className="nightfall__devices"
-              target="_blank"
-              rel="noopener"
-              title="Nightfall arcade flight game"
-            >
-              <img
-                src={nightfallLaptop}
-                alt="Nightfall arcade flight game running in a desktop browser"
-                className="nightfall__laptop"
-                width="888"
-                height="527"
-                loading="lazy"
-                decoding="async"
-              />
-              {/* Same title screen as the laptop, so it adds nothing for a
-                  screen reader — decorative here. */}
-              <img
-                src={nightfallMobile}
-                alt=""
-                aria-hidden="true"
-                className="nightfall__phone"
-                width="362"
-                height="642"
-                loading="lazy"
-                decoding="async"
-              />
-            </a>
-          </div>
-
-          {/* RIGHT: content */}
+          {/* LEFT: content — MealMate now sits directly above this section
+              with its screenshot on the left, so this one flips sides to
+              keep the two from reading as the same layout back to back. */}
           <div className="nightfall__content">
 
-            <div className="nightfall__brand" data-reveal data-delay="80">
+            <div className="nightfall__brand" data-reveal data-delay="0">
               <img
                 src={nightfallLogo}
                 alt="Nightfall"
@@ -167,11 +134,11 @@ export default function Nightfall() {
               </span>
             </div>
 
-            <h2 className="nightfall__heading" data-reveal data-delay="140">
+            <h2 className="nightfall__heading" data-reveal data-delay="80">
               Nightfall
             </h2>
 
-            <div className="nightfall__body" data-reveal data-delay="200">
+            <div className="nightfall__body" data-reveal data-delay="140">
               <p>
                 {t(
                   "A fast, browser-based arcade flight game built solo with Three.js and vanilla JavaScript, no game engine or framework. You pilot a jet through an endless procedurally-generated landscape at dusk, threading glowing rings for combo multipliers while dodging hazards and terrain. Every mountain range is generated in real time from layered noise and erosion and streamed in without stalling the frame, and it runs smoothly on both desktop and mobile."
@@ -184,7 +151,7 @@ export default function Nightfall() {
               ref={detailsRef}
               data-expanded={expanded}
               data-reveal
-              data-delay="240"
+              data-delay="200"
             >
               <summary
                 className="nightfall__highlights-summary"
@@ -221,7 +188,7 @@ export default function Nightfall() {
               </div>
             </details>
 
-            <div className="nightfall__cta" data-reveal data-delay="300">
+            <div className="nightfall__cta" data-reveal data-delay="260">
               <a
                 href="/game/"
                 className="btn primary"
@@ -245,6 +212,41 @@ export default function Nightfall() {
                 </svg>
               </a>
             </div>
+          </div>
+
+          {/* RIGHT: device mockups — laptop with the phone layered over its
+              bottom-right corner */}
+          <div className="nightfall__visual" data-reveal data-delay="300">
+            <div className="nightfall__glow-under" aria-hidden="true" />
+            <a
+              href="/game/"
+              className="nightfall__devices"
+              target="_blank"
+              rel="noopener"
+              title="Nightfall arcade flight game"
+            >
+              <img
+                src={nightfallLaptop}
+                alt="Nightfall arcade flight game running in a desktop browser"
+                className="nightfall__laptop"
+                width="888"
+                height="527"
+                loading="lazy"
+                decoding="async"
+              />
+              {/* Same title screen as the laptop, so it adds nothing for a
+                  screen reader — decorative here. */}
+              <img
+                src={nightfallMobile}
+                alt=""
+                aria-hidden="true"
+                className="nightfall__phone"
+                width="362"
+                height="642"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
           </div>
 
         </div>

@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { FiTool, FiPlay } from "react-icons/fi";
+import { FiTool, FiPlay, FiCalendar } from "react-icons/fi";
 import { isResumePath, isHomePath } from "../utils/paths";
 import "../styles/Navbar.css";
 
@@ -86,6 +86,7 @@ export default function Navbar() {
 
   // MOBILE MENU STATE
   const [menuOpen, setMenuOpen] = useState(false);
+  const drawerInnerRef = useRef(null);
 
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
@@ -103,6 +104,10 @@ export default function Navbar() {
     if (menuOpen) {
       document.body.style.overflow = "hidden";
       document.body.classList.add("nav-drawer-open");
+      // The drawer stays mounted between opens (only transform/opacity
+      // toggle), so its scroll container otherwise keeps whatever scrollTop
+      // it had from the last time it was open instead of starting at "About".
+      if (drawerInnerRef.current) drawerInnerRef.current.scrollTop = 0;
     } else {
       document.body.style.overflow = "";
       document.body.classList.remove("nav-drawer-open");
@@ -176,6 +181,18 @@ export default function Navbar() {
             </a>
 
             <a
+              className="mealmate-btn"
+              href="/apps/mealmate/"
+              target="_blank"
+              rel="noopener"
+              aria-label={t("Try MealMate")}
+              title={t("Try MealMate")}
+            >
+              <FiCalendar aria-hidden="true" />
+              <span>{t("MealMate")}</span>
+            </a>
+
+            <a
               className="devtools-btn devtools-btn--ghost"
               href="/game/"
               target="_blank"
@@ -239,7 +256,7 @@ export default function Navbar() {
       />
 
       <aside className={`nav-drawer ${menuOpen ? "is-open" : ""}`}>
-        <div className="nav-drawer__inner">
+        <div className="nav-drawer__inner" ref={drawerInnerRef}>
           <div className="nav-drawer__header">
             <span className="nav-drawer__title">{t("Navigation")}</span>
           </div>
@@ -303,6 +320,24 @@ export default function Navbar() {
                 >
                   <FiTool aria-hidden="true" />
                   <span>{t("DevTools")}</span>
+                </a>
+              </div>
+
+              <div className="nav-drawer__promo">
+                <span className="nav-drawer__promo-label">
+                  {t("HOUSEHOLD-AWARE MEAL PLANNING")}
+                </span>
+                <a
+                  className="mealmate-btn nav-drawer__devtools"
+                  href="/apps/mealmate/"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label={t("Try MealMate")}
+                  title={t("Try MealMate")}
+                  onClick={closeMenu}
+                >
+                  <FiCalendar aria-hidden="true" />
+                  <span>{t("MealMate")}</span>
                 </a>
               </div>
 

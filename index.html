@@ -118,7 +118,8 @@
             "description": "Portfolio website of full-stack developer Mateo Rumac, showcasing selected projects, experience and contact. Remote-friendly.",
             "hasPart": [
               { "@id": "https://mateorumac.com/game/#nightfall" },
-              { "@id": "https://mateorumac.com/tools/#devtools" }
+              { "@id": "https://mateorumac.com/tools/#devtools" },
+              { "@id": "https://mateorumac.com/apps/mealmate/#mealmate" }
             ]
           },
 
@@ -152,6 +153,25 @@
             "description": "A free set of browser-based utilities for web work: image conversion, favicon and Open Graph generation, a contrast checker, a launch checklist and an AI prompt generator. Everything runs locally in the tab, with no sign-up and no uploads.",
             "author": { "@id": "https://mateorumac.com#person" },
             "applicationCategory": "DeveloperApplication",
+            "browserRequirements": "Requires JavaScript",
+            "operatingSystem": "Any (web browser)",
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "EUR",
+              "availability": "https://schema.org/InStock"
+            }
+          },
+
+          {
+            "@type": "WebApplication",
+            "@id": "https://mateorumac.com/apps/mealmate/#mealmate",
+            "name": "MealMate",
+            "url": "https://mateorumac.com/apps/mealmate/",
+            "description": "A local-first weekly meal-planning PWA that generates a personalized plan for an entire household at once, using a deterministic rules and scoring engine for nutrition targets, dietary constraints and learned taste preferences.",
+            "author": { "@id": "https://mateorumac.com#person" },
+            "applicationCategory": "LifestyleApplication",
             "browserRequirements": "Requires JavaScript",
             "operatingSystem": "Any (web browser)",
             "isAccessibleForFree": true,

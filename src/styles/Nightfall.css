@@ -59,10 +59,10 @@
   margin-inline: auto;
 }
 
-/* ----- TWO-COLUMN LAYOUT ----- */
+/* ----- TWO-COLUMN LAYOUT (content left, devices right) ----- */
 .nightfall__inner {
   display: grid;
-  grid-template-columns: 0.95fr 1.05fr;
+  grid-template-columns: 1.05fr 0.95fr;
   gap: clamp(3rem, 6vw, 5.5rem);
   /* start (not center): a sticky item needs the full grid-row height as its
      range of motion — centering would box it to its own content height and
@@ -270,7 +270,7 @@
   transform: translateX(3px);
 }
 
-/* ----- RIGHT: GAME SCREENSHOT ----- */
+/* ----- RIGHT: GAME SCREENSHOT (now on the right; see .nightfall__inner) ----- */
 .nightfall__visual {
   /* Sticks in place once the "Under the hood" details expand and push the
      content column taller than the image — keeps the screenshot in view
@@ -310,7 +310,7 @@
      and drops below the laptop's base. Without this the overhang would eat
      into the column gap. */
   padding-bottom: 8%;
-  transform: perspective(1200px) rotateY(4deg) rotateX(2deg);
+  transform: perspective(1200px) rotateY(-4deg) rotateX(2deg);
   transition: transform 0.6s cubic-bezier(0.22, 0.8, 0.33, 1);
 }
 
@@ -374,13 +374,14 @@
   .nightfall [data-delay="80"]  { transition-delay: 0.08s; }
   .nightfall [data-delay="140"] { transition-delay: 0.14s; }
   .nightfall [data-delay="200"] { transition-delay: 0.20s; }
-  .nightfall [data-delay="240"] { transition-delay: 0.24s; }
+  .nightfall [data-delay="260"] { transition-delay: 0.26s; }
   .nightfall [data-delay="300"] { transition-delay: 0.30s; }
 
-  /* Screenshot gets a more cinematic entrance: slides in from the left */
+  /* Screenshot gets a more cinematic entrance: slides in from the right,
+     since it's now the right-hand column. */
   .nightfall__visual[data-reveal] {
     opacity: 0;
-    transform: translateX(-48px) translateY(16px);
+    transform: translateX(48px) translateY(16px);
     transition:
       opacity 0.85s ease,
       transform 0.85s cubic-bezier(0.2, 0.7, 0.25, 1);

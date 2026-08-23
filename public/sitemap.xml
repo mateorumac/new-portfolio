@@ -53,4 +53,13 @@
     <changefreq>monthly</changefreq>
   </url>
 
+  <!-- Deployed separately from this app, so prerender.js leaves its lastmod
+       alone; update by hand when MealMate ships a new version. -->
+  <url>
+    <loc>https://mateorumac.com/apps/mealmate/</loc>
+    <lastmod>2026-08-23</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
 </urlset>

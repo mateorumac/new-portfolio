@@ -12,8 +12,15 @@
   pointer-events: auto;
 }
 
-.navbar {
+/* Declared on :root, not .navbar — .nav-drawer (a sibling of .navbar, not
+   a descendant) needs to read this too, to reserve the header's height as
+   dead space at the top of its own scrollable content. A custom property
+   set on .navbar would be invisible outside its own subtree. */
+:root {
   --nav-height: clamp(4rem, 6vw, 4.75rem);
+}
+
+.navbar {
   position: fixed;
   top: 0;
   left: 0;
@@ -272,9 +279,65 @@
   mask: var(--theme-icon) no-repeat center / contain;
 }
 
+/* Third project shortcut — MealMate. Neither the loud solid-gradient fill
+   (.devtools-btn) nor the bare outline (.devtools-btn--ghost): a soft tinted
+   fill using the site's existing mint accent, which already reads as
+   "fresh" without introducing a new color for the sake of one button. */
+.mealmate-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  height: 2.5rem;
+  padding: 0 0.95rem;
+  border-radius: 999px;
+  border: 0.0625rem solid color-mix(in oklab, var(--accent) 40%, transparent);
+  background: color-mix(in oklab, var(--accent) 14%, transparent);
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease,
+    transform 0.15s ease, color 0.3s ease;
+}
+
+.mealmate-btn svg {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.mealmate-btn:hover {
+  background: color-mix(in oklab, var(--accent) 22%, transparent);
+  border-color: var(--accent);
+  transform: translateY(-0.0625rem);
+}
+
+.mealmate-btn:active {
+  transform: translateY(0);
+  background: color-mix(in oklab, var(--accent) 18%, transparent);
+}
+
+/* Unscrolled, the header sits over the hero's light band — same problem
+   .devtools-btn--ghost solves below: var(--accent) mint text doesn't have
+   enough contrast there, so it switches to dark ink until the header
+   scrolls (or the page has no hero backdrop to begin with). */
+.navbar:not(.navbar--scrolled) .nav__right .mealmate-btn {
+  color: #10131a;
+  border-color: color-mix(in oklab, #10131a 40%, transparent);
+}
+
+:root:not([data-theme="light"]) .navbar--no-hero:not(.navbar--scrolled) .nav__right .mealmate-btn {
+  color: var(--accent);
+  border-color: color-mix(in oklab, var(--accent) 40%, transparent);
+}
+
 .lang-btn:focus-visible,
 .theme-toggle:focus-visible,
 .devtools-btn:focus-visible,
+.mealmate-btn:focus-visible,
 .navlink:focus-visible {
   outline: 0.125rem solid var(--accent-2);
   outline-offset: 0.15rem;
@@ -355,7 +418,14 @@
   height: 100%;
   min-height: 0;
   overflow-y: auto;
-  padding: calc(var(--nav-height)) 0 2.8rem;
+  /* Momentum scrolling on iOS, and stops a drag that runs out of drawer
+     content from chaining into a page scroll underneath. */
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  /* Bottom is 0 here on purpose — .nav-drawer__content already carries its
+     own bottom padding, and stacking a second one on the outer scroll
+     container just adds dead space below the footer. */
+  padding-top: var(--nav-height);
 }
 
 .nav-drawer__header {
@@ -379,8 +449,16 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  /* Always top-aligned, not centered — three project buttons made this
+     content taller than the viewport a common case, not an edge case, and
+     centering content that overflows is unreliable to scroll to the start
+     of. Top-aligned + the parent's overflow-y: auto is the plain, always-
+     correct way to let this list be taller than the drawer and scroll. */
+  justify-content: flex-start;
   gap: 1.3rem;
+  /* Breathing room above the footer's divider so the last promo button
+     doesn't sit flush against it. */
+  padding-bottom: 1.4rem;
 }
 
 .nav-drawer__nav {
@@ -537,7 +615,8 @@
 /* then right-side buttons — same cadence as .navlinks, continuing on from
    its last item (0.58s) rather than restarting, so the whole header reads
    as one left-to-right cascade instead of two overlapping ones. */
-.navbar .nav__right .devtools-btn {
+.navbar .nav__right .devtools-btn,
+.navbar .nav__right .mealmate-btn {
   opacity: 0;
   animation: navFadeSlide 0.48s cubic-bezier(0.2, 0.7, 0.25, 1) 0.66s both;
 }
@@ -555,6 +634,7 @@
   .navbar .brand,
   .navbar .navlinks .navlink,
   .navbar .nav__right .devtools-btn,
+  .navbar .nav__right .mealmate-btn,
   .navbar .nav__right .lang-btn,
   .navbar .nav__right .theme-toggle,
   .navbar .nav-toggle {
@@ -593,6 +673,35 @@ html[data-theme="light"] .theme-toggle::before {
   ) !important;
 }
 
+/* Three project pills + lang + theme start crowding before the header
+   collapses to the mobile drawer at 1024px. Icon-only keeps everything on
+   one line without wrapping or overflowing — labels stay reachable via
+   aria-label/title, same as the lang/theme toggles already do. */
+@media (max-width: 1240px) {
+  .navlinks {
+    gap: clamp(0.75rem, 1.6vw, 1.2rem);
+  }
+
+  .nav__right {
+    gap: 0.45rem;
+  }
+
+  /* Scoped to .nav__right (the desktop header) — the mobile drawer's
+     full-width promo buttons share these same classes and must keep their
+     label text and 100% width regardless of viewport. */
+  .nav__right .devtools-btn,
+  .nav__right .mealmate-btn {
+    width: 2.5rem;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .nav__right .devtools-btn span,
+  .nav__right .mealmate-btn span {
+    display: none;
+  }
+}
+
 @media (max-width: 1024px) {
   .navbar__inner {
     grid-template-columns: auto 1fr;
@@ -623,7 +732,7 @@ html[data-theme="light"] .theme-toggle::before {
 }
 
 @media (max-width: 600px) {
-  .navbar {
+  :root {
     --nav-height: 4rem;
   }
 
@@ -637,7 +746,7 @@ html[data-theme="light"] .theme-toggle::before {
   }
 
   .nav-drawer__inner {
-    padding: calc(var(--nav-height) + 0.4rem) 0 1.4rem;
+    padding-top: calc(var(--nav-height) + 0.4rem);
   }
 
   .nav-drawer__nav {
@@ -650,7 +759,7 @@ html[data-theme="light"] .theme-toggle::before {
 }
 
 @media (max-width: 400px) {
-   .navbar {
+  :root {
     --nav-height: 3.75rem;
   }
   .navbar__inner {
@@ -667,5 +776,18 @@ html[data-theme="light"] .theme-toggle::before {
 
   .nav-drawer__nav .navlink.nav-drawer__link:first-child {
     margin-top: 1rem;
+  }
+
+  .nav-drawer .navlink.nav-drawer__link {
+    font-size: 1.1rem;
+  }
+
+  /* Three promo buttons (DevTools/MealMate/Nightfall) plus the lang/theme
+     row push this drawer's content taller than short phones can show
+     without scrolling — trim the footer's own spacing so it sits closer
+     to the divider instead of floating a full 1.4rem below it. */
+  .nav-drawer__footer {
+    gap: 0.7rem;
+    padding-top: 0.9rem;
   }
 }

@@ -16,6 +16,7 @@ The primary language version of this site is English, with Croatian equivalents 
 - [Easeful](https://tryeaseful.com/en): Financial decision product focused on life runway and time-cost framing.
 - [Easeful App](https://app.tryeaseful.com): Live app experience for Easeful.
 - [DevTools](https://mateorumac.com/tools/): Privacy-first browser toolkit for image conversion, favicon and Open Graph generation, contrast checking, launch auditing, and related workflows.
+- [MealMate](https://mateorumac.com/apps/mealmate/): Local-first household meal-planning PWA with a deterministic rules and scoring engine for nutrition targets, dietary constraints, and learned taste preferences.
 - [Nightfall](https://mateorumac.com/game/): Browser arcade flight game built with Three.js, WebGL, and procedural terrain streaming.
 - [D&A Property Management](https://danda.hr): Direct booking platform with multilingual booking flows, landlord profit calculator, and role-based dashboards.
 - [D&A Smart Solutions](https://dandaweb.com): Company web-development branch site with parallax hero, portfolio carousel, pricing, and contact flow.
